@@ -8,6 +8,13 @@ export default function Home() {
     setColors(randomColor({ count: 5 }));
   };
 
+  const getLuminosity = (hex: string) => {
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  };
+
   useEffect(() => {
     generate();
     const handleKeyPress = (event: KeyboardEvent) => {
@@ -28,19 +35,30 @@ export default function Home() {
         <button>Follow on Twitter</button>
       </div>
       <div className="flex items-center justify-between h-[90%] bg-gray-600">
-        {colors.map((color, i) => (
-          <div
-            key={i}
-            className={`h-full w-[20%]`}
-            style={{
-              backgroundColor: color,
-            }}
-          >
-            {color}
-          </div>
-        ))}
+        {colors.map((color, i) => {
+          const luminosity = getLuminosity(color);
+          console.log(luminosity);
+          const textColor = luminosity >= 128 ? "text-black" : "text-white";
+          return (
+            <div
+              key={i}
+              className={`h-full w-[20%] flex items-center justify-center`}
+              style={{
+                backgroundColor: color,
+              }}
+            >
+              <div className="">
+                <h1 className={`text-4xl font-bold ${textColor}`}>
+                  {color.toUpperCase()}
+                </h1>
+                <center>
+                  <button>Copy</button>
+                </center>
+              </div>
+            </div>
+          );
+        })}
       </div>
-      {/* <div className="h-[10%]"></div> */}
     </div>
   );
 }
