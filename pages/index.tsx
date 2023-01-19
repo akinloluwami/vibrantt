@@ -1,4 +1,3 @@
-import useCopyToClipboard from "@/hooks/useCopyToClipboard";
 import randomColor from "randomcolor";
 import { useEffect, useState } from "react";
 import { BiCopy } from "react-icons/bi";
