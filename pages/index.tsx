@@ -1,7 +1,10 @@
 import randomColor from "randomcolor";
+import { useState } from "react";
 
 export default function Home() {
-  console.log(randomColor());
+  console.log(randomColor({ count: 5 }));
+  const [colors, setColors] = useState<string[]>([]);
+
   return (
     <div className="w-screen h-screen">
       <div className="flex shadow-sm items-center justify-between px-3 h-[10%]">
