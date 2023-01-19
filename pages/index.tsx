@@ -1,6 +1,7 @@
 import randomColor from "randomcolor";
 import { useEffect, useState } from "react";
 import { BiCopy } from "react-icons/bi";
+import { SiTwitter } from "react-icons/si";
 
 export default function Home() {
   const [colors, setColors] = useState<string[]>([]);
@@ -38,7 +39,12 @@ export default function Home() {
     <div className="w-screen h-screen">
       <div className="flex shadow-sm items-center justify-between px-3 h-[10%]">
         <h1>Vibrantt</h1>
-        <a href="https://twitter.com/vibranttdotco/" target={"_blank"}>
+        <a
+          href="https://twitter.com/vibranttdotco/"
+          target={"_blank"}
+          className="flex items-center gap-2"
+        >
+          <SiTwitter />
           Follow on Twitter
         </a>
       </div>
