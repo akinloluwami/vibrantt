@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { BiCopy } from "react-icons/bi";
 import { SiTwitter } from "react-icons/si";
 import copy from "copy-to-clipboard";
+import Link from "next/link";
 
 export default function Home() {
   const [colors, setColors] = useState<string[]>([]);
@@ -51,14 +52,14 @@ export default function Home() {
           Press the space bar to generate a new palette!
         </p>
 
-        <a
+        <Link
           href="https://twitter.com/vibranttdotco/"
           target={"_blank"}
           className="flex items-center gap-2"
         >
           <SiTwitter />
           Follow on Twitter
-        </a>
+        </Link>
       </div>
 
       <div className="flex items-center justify-start lg:h-[90%] h-[80%] lg:flex-row flex-col">
