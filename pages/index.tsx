@@ -55,6 +55,7 @@ export default function Home() {
         {colors.map((color, i) => {
           const luminosity = getLuminosity(color);
           const colorName = ntc(color);
+
           const textColor = luminosity >= 128 ? "text-black" : "text-white";
           return (
             <div
