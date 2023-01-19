@@ -7,6 +7,7 @@ import Link from "next/link";
 import { getLuminosity } from "@/utils/getLuminosity";
 import nearestColor from "nearest-color";
 import colorNameList from "color-name-list";
+import Loading from "./loading";
 
 export default function Home() {
   const [colors, setColors] = useState<string[]>([]);
@@ -58,23 +59,7 @@ export default function Home() {
       </div>
 
       {colors.length < 1 ? (
-        <div className="flex items-center justify-start lg:h-[90%] h-[84%] lg:flex-row flex-col">
-          <div
-            className={`lg:h-full h-[20%] lg:w-[20%]  w-full flex items-center justify-center bg-slate-400`}
-          ></div>
-          <div
-            className={`lg:h-full h-[20%] lg:w-[20%]  w-full flex items-center justify-center bg-slate-400`}
-          ></div>
-          <div
-            className={`lg:h-full h-[20%] lg:w-[20%]  w-full flex items-center justify-center bg-slate-400`}
-          ></div>
-          <div
-            className={`lg:h-full h-[20%] lg:w-[20%]  w-full flex items-center justify-center bg-slate-400`}
-          ></div>
-          <div
-            className={`lg:h-full h-[20%] lg:w-[20%]  w-full flex items-center justify-center bg-slate-400`}
-          ></div>
-        </div>
+        <Loading />
       ) : (
         <>
           <div className="flex items-center justify-start lg:h-[90%] h-[84%] lg:flex-row flex-col">
