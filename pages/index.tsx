@@ -1,10 +1,13 @@
+import useCopyToClipboard from "@/hooks/useCopyToClipboard";
 import randomColor from "randomcolor";
 import { useEffect, useState } from "react";
 import { BiCopy } from "react-icons/bi";
 import { SiTwitter } from "react-icons/si";
+import copy from "copy-to-clipboard";
 
 export default function Home() {
   const [colors, setColors] = useState<string[]>([]);
+  const [copyText, setCopyText] = useState<string>("Copy");
 
   const generate = () => {
     setColors(randomColor({ count: 5 }));
@@ -66,8 +69,13 @@ export default function Home() {
                   {color.toUpperCase()}
                 </h1>
                 <center className="mt-5">
-                  <div className="tooltip" data-tip="Copy">
-                    <button className="bg-[#191D24] p-2 rounded-full outline-none">
+                  <div className="tooltip" data-tip={copyText}>
+                    <button
+                      className="bg-[#191D24] p-2 rounded-full outline-none"
+                      onClick={() => {
+                        copy(color);
+                      }}
+                    >
                       <BiCopy />
                     </button>
                   </div>
