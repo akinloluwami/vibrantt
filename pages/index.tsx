@@ -41,7 +41,11 @@ export default function Home() {
   return (
     <div className="w-screen h-screen">
       <div className="flex shadow-sm items-center justify-between px-5 h-[10%]">
-        <h1>Vibrantt</h1>
+        <img
+          src="https://res.cloudinary.com/xing0x/image/upload/v1674131509/VIBRANTwbgggw_w6j7m9.png"
+          className="w-32"
+          alt=""
+        />
 
         <p className="text-xl text-center">
           Press the space bar to generate a new palette!
@@ -69,14 +73,14 @@ export default function Home() {
                 backgroundColor: color,
               }}
             >
-              <div className="">
-                <h1 className={`text-4xl font-semibold ${textColor}`}>
+              <div className={`${textColor}`}>
+                <h1 className={`text-4xl font-semibold`}>
                   {color.toUpperCase()}
                 </h1>
                 <center className="mt-5">
                   <div className="tooltip" data-tip={copyText}>
                     <button
-                      className="bg-[#191D24] p-2 rounded-full outline-none"
+                      className="p-2 rounded-full outline-none text-2xl"
                       onClick={() => {
                         copy(color);
                         setCopyText("Copied");
