@@ -38,7 +38,9 @@ export default function Home() {
     <div className="w-screen h-screen">
       <div className="flex shadow-sm items-center justify-between px-3 h-[10%]">
         <h1>Vibrantt</h1>
-        <button>Follow on Twitter</button>
+        <a href="https://twitter.com/vibranttdotco/" target={"_blank"}>
+          Follow on Twitter
+        </a>
       </div>
       <div className="flex items-center justify-between h-[90%]">
         {colors.map((color, i) => {
