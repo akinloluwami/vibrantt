@@ -57,49 +57,73 @@ export default function Home() {
         </Link>
       </div>
 
-      <div className="flex items-center justify-start lg:h-[90%] h-[84%] lg:flex-row flex-col">
-        {colors.map((color, i) => {
-          const luminosity = getLuminosity(color);
-          const textColor = luminosity >= 128 ? "text-black" : "text-white";
-          return (
-            <div
-              key={i}
-              className={`lg:h-full h-[20%] lg:w-[20%]  w-full flex items-center justify-center`}
-              style={{
-                backgroundColor: color,
-              }}
-            >
-              <div className={`${textColor}`}>
-                <h1 className={`lg:text-4xl text-xl font-semibold text-center`}>
-                  {color.toUpperCase()}
-                </h1>
-                <p className="text-center">{nearest(color).name}</p>
-                <center className="lg:mt-5">
-                  <div className="tooltip" data-tip={copyText}>
-                    <button
-                      className="p-2 rounded-full outline-none text-2xl"
-                      onClick={() => {
-                        copy(color);
-                        setCopyText("Copied");
-                        setTimeout(() => {
-                          setCopyText("Copy");
-                        }, 750);
-                      }}
+      {colors.length < 1 ? (
+        <div className="flex items-center justify-start lg:h-[90%] h-[84%] lg:flex-row flex-col">
+          <div
+            className={`lg:h-full h-[20%] lg:w-[20%]  w-full flex items-center justify-center bg-slate-400`}
+          ></div>
+          <div
+            className={`lg:h-full h-[20%] lg:w-[20%]  w-full flex items-center justify-center bg-slate-400`}
+          ></div>
+          <div
+            className={`lg:h-full h-[20%] lg:w-[20%]  w-full flex items-center justify-center bg-slate-400`}
+          ></div>
+          <div
+            className={`lg:h-full h-[20%] lg:w-[20%]  w-full flex items-center justify-center bg-slate-400`}
+          ></div>
+          <div
+            className={`lg:h-full h-[20%] lg:w-[20%]  w-full flex items-center justify-center bg-slate-400`}
+          ></div>
+        </div>
+      ) : (
+        <>
+          <div className="flex items-center justify-start lg:h-[90%] h-[84%] lg:flex-row flex-col">
+            {colors.map((color, i) => {
+              const luminosity = getLuminosity(color);
+              const textColor = luminosity >= 128 ? "text-black" : "text-white";
+              return (
+                <div
+                  key={i}
+                  className={`lg:h-full h-[20%] lg:w-[20%]  w-full flex items-center justify-center`}
+                  style={{
+                    backgroundColor: color,
+                  }}
+                >
+                  <div className={`${textColor}`}>
+                    <h1
+                      className={`lg:text-4xl text-xl font-semibold text-center`}
                     >
-                      <BiCopy />
-                    </button>
+                      {color.toUpperCase()}
+                    </h1>
+                    <p className="text-center">{nearest(color).name}</p>
+                    <center className="lg:mt-5">
+                      <div className="tooltip" data-tip={copyText}>
+                        <button
+                          className="p-2 rounded-full outline-none text-2xl"
+                          onClick={() => {
+                            copy(color);
+                            setCopyText("Copied");
+                            setTimeout(() => {
+                              setCopyText("Copy");
+                            }, 750);
+                          }}
+                        >
+                          <BiCopy />
+                        </button>
+                      </div>
+                    </center>
                   </div>
-                </center>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-      <div className="py-4 px-3 lg:hidden flex items-center w-full h-[8%]">
-        <button className="btn" onClick={generate}>
-          Generate
-        </button>
-      </div>
+                </div>
+              );
+            })}
+          </div>
+          <div className="py-4 px-3 lg:hidden flex items-center w-full h-[8%]">
+            <button className="btn" onClick={generate}>
+              Generate
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 }
