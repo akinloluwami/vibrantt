@@ -40,8 +40,8 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="w-screen h-screen fixed">
-      <div className="flex shadow-sm items-center justify-between px-5 lg:h-[10%] h-[60px]">
+    <div className="w-screen h-screen">
+      <div className="flex shadow-sm items-center justify-between px-5 lg:h-[10%] h-[8%] relative">
         <img
           src="https://res.cloudinary.com/xing0x/image/upload/v1674131509/VIBRANTwbgggw_w6j7m9.png"
           className="w-32"
@@ -62,7 +62,7 @@ export default function Home() {
         </Link>
       </div>
 
-      <div className="flex items-center justify-start lg:h-[90%] h-[80%] lg:flex-row flex-col">
+      <div className="flex items-center justify-start lg:h-[90%] h-[84%] lg:flex-row flex-col">
         {colors.map((color, i) => {
           const luminosity = getLuminosity(color);
           console.log(luminosity);
@@ -100,7 +100,7 @@ export default function Home() {
           );
         })}
       </div>
-      <div className="py-4 px-3 lg:hidden flex items-center">
+      <div className="py-4 px-3 lg:hidden flex items-center w-full h-[8%]">
         <button className="btn" onClick={generate}>
           Generate
         </button>
