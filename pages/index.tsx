@@ -21,6 +21,7 @@ export default function Home() {
       <div className="flex items-center justify-between h-[90%] bg-gray-600">
         {colors.map((color, i) => (
           <div
+            key={i}
             className={`h-full w-[20%]`}
             style={{
               backgroundColor: color,
