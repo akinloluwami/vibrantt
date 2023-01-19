@@ -1,5 +1,6 @@
 import randomColor from "randomcolor";
 import { useEffect, useState } from "react";
+import { BiCopy } from "react-icons/bi";
 
 export default function Home() {
   const [colors, setColors] = useState<string[]>([]);
@@ -39,7 +40,7 @@ export default function Home() {
         <h1>Vibrantt</h1>
         <button>Follow on Twitter</button>
       </div>
-      <div className="flex items-center justify-between h-[90%] bg-gray-600">
+      <div className="flex items-center justify-between h-[90%]">
         {colors.map((color, i) => {
           const luminosity = getLuminosity(color);
           console.log(luminosity);
@@ -56,8 +57,12 @@ export default function Home() {
                 <h1 className={`text-4xl font-bold ${textColor}`}>
                   {color.toUpperCase()}
                 </h1>
-                <center>
-                  <button>Copy</button>
+                <center className="mt-5">
+                  <div className="tooltip" data-tip="Copy">
+                    <button className="bg-[#191D24] p-2 rounded-full outline-none">
+                      <BiCopy />
+                    </button>
+                  </div>
                 </center>
               </div>
             </div>
