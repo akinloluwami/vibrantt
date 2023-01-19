@@ -70,7 +70,7 @@ export default function Home() {
               }}
             >
               <div className="">
-                <h1 className={`text-4xl font-bold ${textColor}`}>
+                <h1 className={`text-4xl font-semibold ${textColor}`}>
                   {color.toUpperCase()}
                 </h1>
                 <center className="mt-5">
