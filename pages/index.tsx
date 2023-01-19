@@ -1,5 +1,5 @@
 import randomColor from "randomcolor";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const [colors, setColors] = useState<string[]>([]);
@@ -7,6 +7,10 @@ export default function Home() {
   const generate = () => {
     setColors(randomColor({ count: 5 }));
   };
+
+  useEffect(() => {
+    generate();
+  }, []);
 
   return (
     <div className="w-screen h-screen">
