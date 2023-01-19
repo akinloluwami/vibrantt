@@ -6,11 +6,18 @@ import copy from "copy-to-clipboard";
 import Link from "next/link";
 import { getLuminosity } from "@/utils/getLuminosity";
 import ntc from "@yatiac/name-that-color";
+import nearestColor from "nearest-color";
+import colorNameList from "color-name-list";
 
 export default function Home() {
   const [colors, setColors] = useState<string[]>([]);
   const [copyText, setCopyText] = useState<string>("Copy");
+  const colorsr = colorNameList.reduce(
+    (o, { name, hex }) => Object.assign(o, { [name]: hex }),
+    {}
+  );
 
+  const nearest = nearestColor.from(colorsr);
   const generate = () => {
     setColors(randomColor({ count: 5 }));
   };
@@ -66,10 +73,10 @@ export default function Home() {
               }}
             >
               <div className={`${textColor}`}>
-                <h1 className={`lg:text-4xl text-xl font-semibold`}>
+                <h1 className={`lg:text-4xl text-xl font-semibold text-center`}>
                   {color.toUpperCase()}
                 </h1>
-                <p className="text-center">{colorName.colorName}</p>
+                <p className="text-center">{nearest(color).name}</p>
                 <center className="lg:mt-5">
                   <div className="tooltip" data-tip={copyText}>
                     <button
