@@ -100,7 +100,7 @@ export default function Home() {
           );
         })}
       </div>
-      <div className="py-4 px-3 lg:hidden">
+      <div className="py-4 px-3 lg:hidden flex items-center">
         <button className="btn" onClick={generate}>
           Generate
         </button>
