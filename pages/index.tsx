@@ -47,7 +47,7 @@ export default function Home() {
           alt=""
         />
 
-        <p className="text-xl text-center">
+        <p className="text-xl text-center lg:block hidden">
           Press the space bar to generate a new palette!
         </p>
 
