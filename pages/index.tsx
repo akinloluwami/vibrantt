@@ -19,11 +19,16 @@ export default function Home() {
         <button>Follow on Twitter</button>
       </div>
       <div className="flex items-center justify-between h-[90%] bg-gray-600">
-        <div className=" h-full w-[20%] bg-red-500"></div>
-        <div className=" h-full w-[20%] bg-green-500"></div>
-        <div className=" h-full w-[20%] bg-yellow-500"></div>
-        <div className=" h-full w-[20%] bg-orange-500"></div>
-        <div className=" h-full w-[20%] bg-purple-500"></div>
+        {colors.map((color, i) => (
+          <div
+            className={`h-full w-[20%]`}
+            style={{
+              backgroundColor: color,
+            }}
+          >
+            {color}
+          </div>
+        ))}
       </div>
       {/* <div className="h-[10%]"></div> */}
     </div>
