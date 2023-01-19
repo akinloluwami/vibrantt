@@ -10,6 +10,15 @@ export default function Home() {
 
   useEffect(() => {
     generate();
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (event.code === "Space") {
+        generate();
+      }
+    };
+    document.addEventListener("keydown", handleKeyPress);
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
   }, []);
 
   return (
