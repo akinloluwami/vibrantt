@@ -5,7 +5,7 @@ import { BiCopy } from "react-icons/bi";
 import { SiTwitter } from "react-icons/si";
 import copy from "copy-to-clipboard";
 import Link from "next/link";
-import hexToRgb from "@/utils/hexToRgb";
+import { getLuminosity } from "@/utils/getLuminosity";
 
 export default function Home() {
   const [colors, setColors] = useState<string[]>([]);
@@ -14,11 +14,6 @@ export default function Home() {
   const generate = () => {
     setColors(randomColor({ count: 5 }));
   };
-
-  function getLuminosity(hexCode: string) {
-    const rgb = hexToRgb(hexCode);
-    return 0.2126 * rgb.r + 0.7152 * rgb.g + 0.0722 * rgb.b;
-  }
 
   useEffect(() => {
     generate();
