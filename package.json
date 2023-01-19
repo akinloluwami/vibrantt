@@ -21,6 +21,7 @@
     "daisyui": "^2.47.0",
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.2",
+    "flowbite": "^1.6.2",
     "name-that-color": "^0.1.0",
     "nearest-color": "^0.4.4",
     "next": "13.1.2",
