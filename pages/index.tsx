@@ -15,12 +15,10 @@ export default function Home() {
     return { r, g, b };
   }
 
-  const getLuminosity = (hex: string) => {
-    const r = parseInt(hex.substring(0, 2), 16);
-    const g = parseInt(hex.substring(2, 4), 16);
-    const b = parseInt(hex.substring(4, 6), 16);
-    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
-  };
+  function getLuminosity(hexCode: string) {
+    const rgb = hexToRgb(hexCode);
+    return 0.2126 * rgb.r + 0.7152 * rgb.g + 0.0722 * rgb.b;
+  }
 
   useEffect(() => {
     generate();
