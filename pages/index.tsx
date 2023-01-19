@@ -5,6 +5,7 @@ import { SiTwitter } from "react-icons/si";
 import copy from "copy-to-clipboard";
 import Link from "next/link";
 import { getLuminosity } from "@/utils/getLuminosity";
+import ntc from "@yatiac/name-that-color";
 
 export default function Home() {
   const [colors, setColors] = useState<string[]>([]);
@@ -53,7 +54,7 @@ export default function Home() {
       <div className="flex items-center justify-start lg:h-[90%] h-[84%] lg:flex-row flex-col">
         {colors.map((color, i) => {
           const luminosity = getLuminosity(color);
-          console.log(luminosity);
+          const colorName = ntc(color);
           const textColor = luminosity >= 128 ? "text-black" : "text-white";
           return (
             <div
@@ -67,6 +68,7 @@ export default function Home() {
                 <h1 className={`lg:text-4xl text-xl font-semibold`}>
                   {color.toUpperCase()}
                 </h1>
+                <p className="text-center">{colorName.colorName}</p>
                 <center className="lg:mt-5">
                   <div className="tooltip" data-tip={copyText}>
                     <button
