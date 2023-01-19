@@ -2,8 +2,11 @@ import randomColor from "randomcolor";
 import { useState } from "react";
 
 export default function Home() {
-  console.log(randomColor({ count: 5 }));
   const [colors, setColors] = useState<string[]>([]);
+
+  const generate = () => {
+    setColors(randomColor({ count: 5 }));
+  };
 
   return (
     <div className="w-screen h-screen">
