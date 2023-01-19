@@ -1,4 +1,7 @@
+import randomColor from "randomcolor";
+
 export default function Home() {
+  console.log(randomColor());
   return (
     <div className="w-screen h-screen">
       <div className="flex shadow-sm items-center justify-between px-3 h-[10%]">
