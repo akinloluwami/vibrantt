@@ -39,8 +39,8 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="w-screen h-screen">
-      <div className="flex shadow-sm items-center justify-between px-5 h-[10%]">
+    <div className="w-screen h-screen fixed">
+      <div className="flex shadow-sm items-center justify-between px-5 lg:h-[10%] h-[60px]">
         <img
           src="https://res.cloudinary.com/xing0x/image/upload/v1674131509/VIBRANTwbgggw_w6j7m9.png"
           className="w-32"
@@ -60,7 +60,8 @@ export default function Home() {
           Follow on Twitter
         </a>
       </div>
-      <div className="flex items-center justify-between h-[90%]">
+
+      <div className="flex items-center justify-start lg:h-[90%] h-[80%] lg:flex-row flex-col">
         {colors.map((color, i) => {
           const luminosity = getLuminosity(color);
           console.log(luminosity);
@@ -68,16 +69,16 @@ export default function Home() {
           return (
             <div
               key={i}
-              className={`h-full w-[20%] flex items-center justify-center`}
+              className={`lg:h-full h-[20%] lg:w-[20%]  w-full flex items-center justify-center`}
               style={{
                 backgroundColor: color,
               }}
             >
               <div className={`${textColor}`}>
-                <h1 className={`text-4xl font-semibold`}>
+                <h1 className={`lg:text-4xl text-xl font-semibold`}>
                   {color.toUpperCase()}
                 </h1>
-                <center className="mt-5">
+                <center className="lg:mt-5">
                   <div className="tooltip" data-tip={copyText}>
                     <button
                       className="p-2 rounded-full outline-none text-2xl"
@@ -97,6 +98,9 @@ export default function Home() {
             </div>
           );
         })}
+      </div>
+      <div className="py-4 px-3 lg:hidden">
+        <button className="btn">Generate</button>
       </div>
     </div>
   );
