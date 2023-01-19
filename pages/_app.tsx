@@ -16,7 +16,10 @@ export default function App({ Component, pageProps }: AppProps) {
           property="og:image"
           content="https://res.cloudinary.com/xing0x/image/upload/v1674131508/VIBRANT_icon_nrwiko.png"
         ></meta>
-        <meta name="description" content="Color Palette Generator"></meta>
+        <meta
+          name="description"
+          content="Generate beautiful color palettes for your creative needs."
+        ></meta>
 
         <meta
           property="twitter:image"
@@ -25,7 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
         <meta
           name="twitter:description"
-          content="Color Palette Generator"
+          content="Generate beautiful color palettes for your creative needs."
         ></meta>
       </Head>
       <Component {...pageProps} />
