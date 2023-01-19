@@ -74,6 +74,10 @@ export default function Home() {
                       className="bg-[#191D24] p-2 rounded-full outline-none"
                       onClick={() => {
                         copy(color);
+                        setCopyText("Copied");
+                        setTimeout(() => {
+                          setCopyText("Copy");
+                        }, 750);
                       }}
                     >
                       <BiCopy />
