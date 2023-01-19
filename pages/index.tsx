@@ -40,8 +40,13 @@ export default function Home() {
 
   return (
     <div className="w-screen h-screen">
-      <div className="flex shadow-sm items-center justify-between px-3 h-[10%]">
+      <div className="flex shadow-sm items-center justify-between px-5 h-[10%]">
         <h1>Vibrantt</h1>
+
+        <p className="text-xl text-center">
+          Press the space bar to generate a new palette!
+        </p>
+
         <a
           href="https://twitter.com/vibranttdotco/"
           target={"_blank"}
