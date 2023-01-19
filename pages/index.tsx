@@ -5,7 +5,6 @@ import { SiTwitter } from "react-icons/si";
 import copy from "copy-to-clipboard";
 import Link from "next/link";
 import { getLuminosity } from "@/utils/getLuminosity";
-import ntc from "@yatiac/name-that-color";
 import nearestColor from "nearest-color";
 import colorNameList from "color-name-list";
 
@@ -61,8 +60,6 @@ export default function Home() {
       <div className="flex items-center justify-start lg:h-[90%] h-[84%] lg:flex-row flex-col">
         {colors.map((color, i) => {
           const luminosity = getLuminosity(color);
-          const colorName = ntc(color);
-
           const textColor = luminosity >= 128 ? "text-black" : "text-white";
           return (
             <div
