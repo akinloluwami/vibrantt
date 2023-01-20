@@ -11,7 +11,7 @@ import Loading from "./loading";
 import produce from "immer";
 
 export default function Home() {
-  const [colors, setColors] = useState<string[]>([]);
+  const [palette, setPalette] = useState<string[]>([]);
   const [colorHistory, setColorHistory] = useState<[]>([]);
   const [copyText, setCopyText] = useState<string>("Copy");
 
@@ -19,14 +19,15 @@ export default function Home() {
 
   const redo = () => {};
 
-  const colorsr = colorNameList.reduce(
+  const colors = colorNameList.reduce(
     (o, { name, hex }) => Object.assign(o, { [name]: hex }),
     {}
   );
 
-  const nearest = nearestColor.from(colorsr);
+  const nearest = nearestColor.from(colors);
   const generate = () => {
-    setColors(randomColor({ count: 5 }));
+    const newPalette = randomColor({ count: 5 });
+    setPalette(newPalette);
   };
 
   useEffect(() => {
@@ -76,12 +77,12 @@ export default function Home() {
         </Link>
       </div>
 
-      {colors.length < 1 ? (
+      {palette.length < 1 ? (
         <Loading />
       ) : (
         <>
           <div className="flex items-center justify-start lg:h-[90%] h-[84%] lg:flex-row flex-col">
-            {colors.map((color, i) => {
+            {palette.map((color, i) => {
               const luminosity = getLuminosity(color);
               const textColor = luminosity >= 128 ? "text-black" : "text-white";
               return (
