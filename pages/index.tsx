@@ -12,27 +12,12 @@ import produce from "immer";
 
 export default function Home() {
   const [colors, setColors] = useState<string[]>([]);
-  const [pastColors, setPastColors] = useState<string[][]>([]);
-  const [futureColors, setFutureColors] = useState<string[][]>([]);
+  const [colorHistory, setColorHistory] = useState<[]>([]);
   const [copyText, setCopyText] = useState<string>("Copy");
 
-  const undo = () => {
-    if (pastColors.length === 0) return;
-    setFutureColors((futureColors) => [...futureColors, colors]);
-    setColors(
-      produce((colors) => {
-        colors = pastColors[pastColors.length - 1];
-      })
-    );
-    setPastColors(pastColors.slice(0, pastColors.length - 1));
-  };
+  const undo = () => {};
 
-  const redo = () => {
-    if (futureColors.length === 0) return;
-    setPastColors((pastColors) => [...pastColors, colors]);
-    setColors(futureColors[0]);
-    setFutureColors(futureColors.slice(1));
-  };
+  const redo = () => {};
 
   const colorsr = colorNameList.reduce(
     (o, { name, hex }) => Object.assign(o, { [name]: hex }),
@@ -42,11 +27,7 @@ export default function Home() {
   const nearest = nearestColor.from(colorsr);
   const generate = () => {
     setColors(randomColor({ count: 5 }));
-    setPastColors((pastColors) => [...pastColors, colors]);
-    setFutureColors([]);
   };
-
-  // undo and redo
 
   useEffect(() => {
     generate();
