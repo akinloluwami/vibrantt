@@ -19,7 +19,11 @@ export default function Home() {
   const undo = () => {
     if (pastColors.length === 0) return;
     setFutureColors((futureColors) => [...futureColors, colors]);
-    setColors(produce(pastColors[pastColors.length - 1]));
+    setColors(
+      produce((colors) => {
+        colors = pastColors[pastColors.length - 1];
+      })
+    );
     setPastColors(pastColors.slice(0, pastColors.length - 1));
   };
 
