@@ -9,7 +9,7 @@ import nearestColor from "nearest-color";
 import colorNameList from "color-name-list";
 import Loading from "./loading";
 import produce from "immer";
-
+import { TiArrowBack } from "react-icons/ti";
 export default function Home() {
   const [palette, setPalette] = useState<string[]>([]);
   const [copyText, setCopyText] = useState<string>("Copy");
@@ -135,11 +135,11 @@ export default function Home() {
             </button>
             <div className="flex gap-3">
               <button
-                className="btn"
+                className="btn rounded-full"
                 onClick={undo}
                 disabled={currentIndex === 1}
               >
-                undo
+                <TiArrowBack />
               </button>
               <button
                 className="btn"
