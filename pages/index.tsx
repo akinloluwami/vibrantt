@@ -9,7 +9,7 @@ import nearestColor from "nearest-color";
 import colorNameList from "color-name-list";
 import Loading from "./loading";
 import produce from "immer";
-import { TiArrowBack } from "react-icons/ti";
+import { TiArrowBack, TiArrowForward } from "react-icons/ti";
 export default function Home() {
   const [palette, setPalette] = useState<string[]>([]);
   const [copyText, setCopyText] = useState<string>("Copy");
