@@ -15,10 +15,6 @@ export default function Home() {
   const [paletteHistory, setPaletteHistory] = useState<[]>([]);
   const [copyText, setCopyText] = useState<string>("Copy");
 
-  const undo = () => {};
-
-  const redo = () => {};
-
   const colors = colorNameList.reduce(
     (o, { name, hex }) => Object.assign(o, { [name]: hex }),
     {}
@@ -29,6 +25,10 @@ export default function Home() {
     const newPalette = randomColor({ count: 5 });
     setPalette(newPalette);
   };
+
+  const undo = () => {};
+
+  const redo = () => {};
 
   useEffect(() => {
     generate();
