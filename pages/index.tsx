@@ -137,11 +137,15 @@ export default function Home() {
               <button
                 className="btn"
                 onClick={undo}
-                disabled={currentIndex < 2}
+                disabled={currentIndex === 1}
               >
                 undo
               </button>
-              <button className="btn" onClick={redo}>
+              <button
+                className="btn"
+                onClick={redo}
+                disabled={currentIndex === prevPalettes.length - 1}
+              >
                 redo
               </button>
             </div>
