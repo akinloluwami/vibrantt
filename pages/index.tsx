@@ -12,7 +12,7 @@ import produce from "immer";
 
 export default function Home() {
   const [palette, setPalette] = useState<string[]>([]);
-  const [paletteHistory, setPaletteHistory] = useState<[]>([]);
+  const [paletteHistory, setPaletteHistory] = useState<string[][]>([]);
   const [copyText, setCopyText] = useState<string>("Copy");
 
   const colors = colorNameList.reduce(
@@ -21,12 +21,16 @@ export default function Home() {
   );
 
   const nearest = nearestColor.from(colors);
+
   const generate = () => {
-    const newPalette = randomColor({ count: 5 });
+    const newPalette: string[] = randomColor({ count: 5 });
     setPalette(newPalette);
+    setPaletteHistory([...paletteHistory, newPalette]);
   };
 
-  const undo = () => {};
+  const undo = () => {
+    console.log(paletteHistory);
+  };
 
   const redo = () => {};
 
