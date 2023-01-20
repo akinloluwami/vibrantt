@@ -8,6 +8,7 @@ import { getLuminosity } from "@/utils/getLuminosity";
 import nearestColor from "nearest-color";
 import colorNameList from "color-name-list";
 import Loading from "./loading";
+import produce from "immer";
 
 export default function Home() {
   const [colors, setColors] = useState<string[]>([]);
