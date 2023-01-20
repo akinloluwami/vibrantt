@@ -135,18 +135,18 @@ export default function Home() {
             </button>
             <div className="flex gap-3">
               <button
-                className="btn rounded-full"
+                className="btn rounded-full text-lg"
                 onClick={undo}
                 disabled={currentIndex === 1}
               >
                 <TiArrowBack />
               </button>
               <button
-                className="btn"
+                className="btn rounded-full text-lg"
                 onClick={redo}
                 disabled={currentIndex === prevPalettes.length - 1}
               >
-                redo
+                <TiArrowForward />
               </button>
             </div>
           </div>
