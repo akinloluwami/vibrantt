@@ -12,7 +12,7 @@ import produce from "immer";
 
 export default function Home() {
   const [palette, setPalette] = useState<string[]>([]);
-  const [colorHistory, setColorHistory] = useState<[]>([]);
+  const [paletteHistory, setPaletteHistory] = useState<[]>([]);
   const [copyText, setCopyText] = useState<string>("Copy");
 
   const undo = () => {};
