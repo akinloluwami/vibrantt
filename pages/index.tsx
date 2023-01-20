@@ -74,18 +74,7 @@ export default function Home() {
         <p className="text-xl text-center lg:block hidden">
           Press the space bar to generate a new palette!
         </p>
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-          onClick={undo}
-        >
-          undo
-        </button>
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-          onClick={redo}
-        >
-          redo
-        </button>
+
         <Link
           href="https://twitter.com/vibranttdotco/"
           target={"_blank"}
@@ -140,10 +129,18 @@ export default function Home() {
               );
             })}
           </div>
-          <div className="py-4 px-3 lg:hidden flex items-center w-full h-[8%]">
+          <div className="py-4 px-3 lg:hidden flex items-center justify-between w-full h-[8%]">
             <button className="btn" onClick={generate}>
               Generate
             </button>
+            <div className="flex gap-3">
+              <button className="btn" onClick={undo}>
+                undo
+              </button>
+              <button className="btn" onClick={redo}>
+                redo
+              </button>
+            </div>
           </div>
         </>
       )}
