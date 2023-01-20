@@ -11,7 +11,24 @@ import Loading from "./loading";
 
 export default function Home() {
   const [colors, setColors] = useState<string[]>([]);
+  const [pastColors, setPastColors] = useState<string[][]>([]);
+  const [futureColors, setFutureColors] = useState<string[][]>([]);
   const [copyText, setCopyText] = useState<string>("Copy");
+
+  const undo = () => {
+    if (pastColors.length === 0) return;
+    setFutureColors((futureColors) => [...futureColors, colors]);
+    setColors(produce(pastColors[pastColors.length - 1]));
+    setPastColors(pastColors.slice(0, pastColors.length - 1));
+  };
+
+  const redo = () => {
+    if (futureColors.length === 0) return;
+    setPastColors((pastColors) => [...pastColors, colors]);
+    setColors(futureColors[0]);
+    setFutureColors(futureColors.slice(1));
+  };
+
   const colorsr = colorNameList.reduce(
     (o, { name, hex }) => Object.assign(o, { [name]: hex }),
     {}
@@ -20,7 +37,11 @@ export default function Home() {
   const nearest = nearestColor.from(colorsr);
   const generate = () => {
     setColors(randomColor({ count: 5 }));
+    setPastColors((pastColors) => [...pastColors, colors]);
+    setFutureColors([]);
   };
+
+  // undo and redo
 
   useEffect(() => {
     generate();
@@ -47,7 +68,18 @@ export default function Home() {
         <p className="text-xl text-center lg:block hidden">
           Press the space bar to generate a new palette!
         </p>
-
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+          onClick={undo}
+        >
+          undo
+        </button>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+          onClick={redo}
+        >
+          redo
+        </button>
         <Link
           href="https://twitter.com/vibranttdotco/"
           target={"_blank"}
