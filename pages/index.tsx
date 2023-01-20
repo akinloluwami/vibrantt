@@ -12,8 +12,9 @@ import produce from "immer";
 
 export default function Home() {
   const [palette, setPalette] = useState<string[]>([]);
-  const [paletteHistory, setPaletteHistory] = useState<string[][]>([]);
   const [copyText, setCopyText] = useState<string>("Copy");
+  const [prevPalettes, setPrevPalettes] = useState<string[][]>([[]]);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   const colors = colorNameList.reduce(
     (o, { name, hex }) => Object.assign(o, { [name]: hex }),
@@ -25,14 +26,28 @@ export default function Home() {
   const generate = () => {
     const newPalette: string[] = randomColor({ count: 5 });
     setPalette(newPalette);
-    setPaletteHistory([...paletteHistory, newPalette]);
+    setPrevPalettes(
+      produce(prevPalettes, (draft) => {
+        draft.splice(currentIndex + 1);
+        draft.push(newPalette);
+      })
+    );
+    setCurrentIndex(currentIndex + 1);
   };
 
   const undo = () => {
-    console.log(paletteHistory);
+    if (currentIndex > 0 && currentIndex > 1) {
+      setCurrentIndex(currentIndex - 1);
+      setPalette(prevPalettes[currentIndex - 1]);
+    }
   };
 
-  const redo = () => {};
+  const redo = () => {
+    if (currentIndex < prevPalettes.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+      setPalette(prevPalettes[currentIndex + 1]);
+    }
+  };
 
   useEffect(() => {
     generate();
