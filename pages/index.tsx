@@ -134,7 +134,11 @@ export default function Home() {
               Generate
             </button>
             <div className="flex gap-3">
-              <button className="btn" onClick={undo}>
+              <button
+                className="btn"
+                onClick={undo}
+                disabled={currentIndex < 2}
+              >
                 undo
               </button>
               <button className="btn" onClick={redo}>
