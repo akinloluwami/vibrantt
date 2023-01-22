@@ -51,27 +51,32 @@ export default function Home() {
 
   useEffect(() => {
     generate();
-    const handleKeyPress = (event: KeyboardEvent) => {
-      if (event.code === "Space") {
-        const newPalette: string[] = randomColor({ count: 5 });
-        setPalette(newPalette);
-        setPrevPalettes(
-          produce(prevPalettes, (draft) => {
-            draft.splice(currentIndex + 1);
-            draft.push(newPalette);
-          })
-        );
-        setCurrentIndex(currentIndex + 1);
-      }
-    };
-    document.addEventListener("keydown", handleKeyPress);
-    return () => {
-      document.removeEventListener("keydown", handleKeyPress);
-    };
+    // const handleKeyPress = (event: KeyboardEvent) => {
+    //   if (event.code === "Space") {
+    //     const newPalette: string[] = randomColor({ count: 5 });
+    //     setPalette(newPalette);
+    //     setPrevPalettes(
+    //       produce(prevPalettes, (draft) => {
+    //         draft.splice(currentIndex + 1);
+    //         draft.push(newPalette);
+    //       })
+    //     );
+    //     setCurrentIndex(currentIndex + 1);
+    //   }
+    // };
+    // document.addEventListener("keydown", handleKeyPress);
+    // return () => {
+    //   document.removeEventListener("keydown", handleKeyPress);
+    // };
   }, []);
 
   return (
-    <div className="w-screen h-screen">
+    <div
+      className="w-screen h-screen"
+      onKeyDown={(e) => {
+        console.log(e);
+      }}
+    >
       <div className="flex shadow-sm items-center justify-between px-5 lg:h-[10%] h-[8%] relative">
         <img
           src="https://res.cloudinary.com/xing0x/image/upload/v1674131509/VIBRANTwbgggw_w6j7m9.png"
