@@ -51,23 +51,15 @@ export default function Home() {
 
   useEffect(() => {
     generate();
-    // const handleKeyPress = (event: KeyboardEvent) => {
-    //   if (event.code === "Space") {
-    //     const newPalette: string[] = randomColor({ count: 5 });
-    //     setPalette(newPalette);
-    //     setPrevPalettes(
-    //       produce(prevPalettes, (draft) => {
-    //         draft.splice(currentIndex + 1);
-    //         draft.push(newPalette);
-    //       })
-    //     );
-    //     setCurrentIndex(currentIndex + 1);
-    //   }
-    // };
-    // document.addEventListener("keydown", handleKeyPress);
-    // return () => {
-    //   document.removeEventListener("keydown", handleKeyPress);
-    // };
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (event.code === "Space") {
+        generate();
+      }
+    };
+    document.addEventListener("keydown", handleKeyPress);
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
   }, []);
 
   return (
