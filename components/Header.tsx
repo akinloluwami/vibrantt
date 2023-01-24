@@ -17,7 +17,7 @@ const Header = () => {
       <Link
         href="https://twitter.com/vibranttdotco/"
         target={"_blank"}
-        className="flex items-center gap-2"
+        className="flex items-center gap-2 lg:hidden"
       >
         <SiTwitter />
         Follow on Twitter
