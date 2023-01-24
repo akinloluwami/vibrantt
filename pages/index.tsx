@@ -26,7 +26,7 @@ export default function Home() {
     const newPalette: string[] = randomColor({ count: 5 });
     setPalette(newPalette);
 
-    // console.log(prevPalettes);
+    console.log(prevPalettes);
 
     // let colors = newPalette;
 
