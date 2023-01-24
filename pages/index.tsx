@@ -26,13 +26,13 @@ export default function Home() {
     const newPalette: string[] = randomColor({ count: 5 });
     setPalette(newPalette);
 
-    console.log(prevPalettes);
+    // console.log(prevPalettes);
 
-    let colors = newPalette;
+    // let colors = newPalette;
 
-    // for (let i = 0; i < colors.length; i++) {
-    //   console.log("%c  ", `background: ${colors[i]};`);
-    // }
+    for (let i = 0; i < colors.length; i++) {
+      console.log("%c  ", `background: ${colors[i]};`);
+    }
     setPrevPalettes(
       produce(prevPalettes, (draft) => {
         draft.splice(currentIndex + 1);
