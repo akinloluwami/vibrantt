@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 import { SiTwitter } from "react-icons/si";
 
 const Header = () => {
