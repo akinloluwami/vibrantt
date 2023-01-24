@@ -64,12 +64,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div
-      className="w-screen h-screen"
-      onKeyDown={(e) => {
-        console.log(e);
-      }}
-    >
+    <div className="w-screen h-screen">
       <div className="flex shadow-sm items-center justify-between px-5 lg:h-[10%] h-[8%] relative">
         <Header
           undo={undo}
