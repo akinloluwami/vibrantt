@@ -25,6 +25,11 @@ export default function Home() {
   const generate = () => {
     const newPalette: string[] = randomColor({ count: 5 });
     setPalette(newPalette);
+    let colors = newPalette;
+
+    for (let i = 0; i < colors.length; i++) {
+      console.log("%c  ", `background: ${colors[i]};`);
+    }
     setPrevPalettes(
       produce(prevPalettes, (draft) => {
         draft.splice(currentIndex + 1);
@@ -60,6 +65,8 @@ export default function Home() {
       document.removeEventListener("keydown", handleKeyPress);
     };
   }, []);
+
+  useEffect(() => {}, []);
 
   return (
     <div className="w-screen h-screen">
