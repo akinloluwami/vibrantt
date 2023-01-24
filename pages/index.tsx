@@ -23,6 +23,11 @@ export default function Home() {
   const nearest = nearestColor.from(colors);
 
   const generate = () => {
+    // let colors = newPalette;
+
+    // for (let i = 0; i < colors.length; i++) {
+    //   console.log("%c  ", `background: ${colors[i]};`);
+    // }
     const newPalette: string[] = randomColor({ count: 5 });
     setPalette(newPalette);
     setPrevPalettes(
