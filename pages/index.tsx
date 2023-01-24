@@ -9,6 +9,8 @@ import Loading from "./loading";
 import produce from "immer";
 import { TiArrowBack, TiArrowForward } from "react-icons/ti";
 import Header from "@/components/Header";
+import useKeypress from "react-use-keypress";
+
 export default function Home() {
   const [palette, setPalette] = useState<string[]>([]);
   const [copyText, setCopyText] = useState<string>("Copy");
@@ -55,18 +57,11 @@ export default function Home() {
 
   useEffect(() => {
     generate();
-    const handleKeyPress = (event: KeyboardEvent) => {
-      if (event.code === "Space") {
-        generate();
-      }
-    };
-    document.addEventListener("keydown", handleKeyPress);
-    return () => {
-      document.removeEventListener("keydown", handleKeyPress);
-    };
   }, []);
 
-  useEffect(() => {}, []);
+  useKeypress(" ", () => {
+    generate();
+  });
 
   return (
     <div className="w-screen h-screen">
