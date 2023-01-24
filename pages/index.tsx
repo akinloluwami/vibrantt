@@ -30,9 +30,9 @@ export default function Home() {
 
     // let colors = newPalette;
 
-    for (let i = 0; i < colors.length; i++) {
-      console.log("%c  ", `background: ${colors[i]};`);
-    }
+    // for (let i = 0; i < colors.length; i++) {
+    //   console.log("%c  ", `background: ${colors[i]};`);
+    // }
     setPrevPalettes(
       produce(prevPalettes, (draft) => {
         draft.splice(currentIndex + 1);
