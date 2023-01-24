@@ -23,7 +23,7 @@ const Header = ({ undo, currentIndex, redo, prevPalettes }: any) => {
         <SiTwitter />
         Follow on Twitter
       </Link>
-      <div className="flex items-center gap-2">
+      <div className="lg:flex items-center gap-2 hidden lg:visible">
         <button
           className="btn rounded-full text-lg"
           onClick={undo}
