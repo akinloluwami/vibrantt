@@ -1,9 +1,7 @@
 import randomColor from "randomcolor";
 import { useEffect, useState } from "react";
 import { BiCopy } from "react-icons/bi";
-import { SiTwitter } from "react-icons/si";
 import copy from "copy-to-clipboard";
-import Link from "next/link";
 import { getLuminosity } from "@/utils/getLuminosity";
 import nearestColor from "nearest-color";
 import colorNameList from "color-name-list";
