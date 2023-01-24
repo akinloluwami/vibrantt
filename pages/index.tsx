@@ -71,7 +71,12 @@ export default function Home() {
       }}
     >
       <div className="flex shadow-sm items-center justify-between px-5 lg:h-[10%] h-[8%] relative">
-        <Header/>
+        <Header
+          undo={undo}
+          currentIndex={currentIndex}
+          redo={redo}
+          prevPalettes={prevPalettes}
+        />
       </div>
 
       {palette.length < 1 ? (
