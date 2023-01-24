@@ -18,12 +18,20 @@ const Header = ({ undo, currentIndex, redo, prevPalettes }: any) => {
       <Link
         href="https://twitter.com/vibranttdotco/"
         target={"_blank"}
-        className="flex items-center gap-2 lg:hidden"
+        className="flex items-center gap-2"
       >
         <SiTwitter />
         Follow on Twitter
       </Link>
-      <div className="lg:flex items-center gap-2 hidden lg:visible">
+      {/* <Link
+        href="https://twitter.com/vibranttdotco/"
+        target={"_blank"}
+        className="flex items-center gap-2 lg:hidden"
+      >
+        <SiTwitter />
+        Follow on Twitter
+      </Link> */}
+      <div className="items-center gap-2 hidden">
         <button
           className="btn rounded-full text-lg"
           onClick={undo}
@@ -39,6 +47,22 @@ const Header = ({ undo, currentIndex, redo, prevPalettes }: any) => {
           <TiArrowForward />
         </button>
       </div>
+      {/* <div className="lg:flex items-center gap-2 hidden lg:visible">
+        <button
+          className="btn rounded-full text-lg"
+          onClick={undo}
+          disabled={currentIndex === 1}
+        >
+          <TiArrowBack />
+        </button>
+        <button
+          className="btn rounded-full text-lg"
+          onClick={redo}
+          disabled={currentIndex === prevPalettes.length - 1}
+        >
+          <TiArrowForward />
+        </button>
+      </div> */}
     </>
   );
 };
