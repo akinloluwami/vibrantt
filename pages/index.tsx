@@ -10,6 +10,7 @@ import colorNameList from "color-name-list";
 import Loading from "./loading";
 import produce from "immer";
 import { TiArrowBack, TiArrowForward } from "react-icons/ti";
+import Header from "@/components/Header";
 export default function Home() {
   const [palette, setPalette] = useState<string[]>([]);
   const [copyText, setCopyText] = useState<string>("Copy");
@@ -70,24 +71,7 @@ export default function Home() {
       }}
     >
       <div className="flex shadow-sm items-center justify-between px-5 lg:h-[10%] h-[8%] relative">
-        <img
-          src="https://res.cloudinary.com/xing0x/image/upload/v1674131509/VIBRANTwbgggw_w6j7m9.png"
-          className="w-32"
-          alt=""
-        />
-
-        <p className="text-xl text-center lg:block hidden">
-          Press the space bar to generate a new palette!
-        </p>
-
-        <Link
-          href="https://twitter.com/vibranttdotco/"
-          target={"_blank"}
-          className="flex items-center gap-2"
-        >
-          <SiTwitter />
-          Follow on Twitter
-        </Link>
+        <Header />
       </div>
 
       {palette.length < 1 ? (
