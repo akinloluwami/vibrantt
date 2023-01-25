@@ -23,5 +23,5 @@ const useDrawerStore = create<DrawerState>((set, get) => ({
   close: () => set((state) => ({ ...state, isOpen: false })),
 }));
 
-export default useDrawerStore;
 export { DrawerContext };
+export default useDrawerStore;
