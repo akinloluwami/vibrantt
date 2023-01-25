@@ -13,4 +13,14 @@ module.exports = {
     require("daisyui"),
     require("flowbite/plugin", require("tailwindcss-animate")),
   ],
+  daisyui: {
+    styled: true,
+    themes: true,
+    base: true,
+    utils: true,
+    logs: true,
+    rtl: false,
+    prefix: "",
+    darkTheme: "dark",
+  },
 };
