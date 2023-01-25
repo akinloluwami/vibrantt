@@ -15,6 +15,7 @@ import useDrawerStore, { DrawerContext } from "@/stores/useDrawerStore";
 import useColorSpaceStore from "@/stores/useColorSpaceStore";
 import hexToRgb from "@/utils/hexToRgb";
 import hexToHsl from "@/utils/hexToHsl";
+import useToggleStore from "@/stores/useToggleStore";
 
 export default function Home() {
   const [palette, setPalette] = useState<string[]>([]);
@@ -23,6 +24,7 @@ export default function Home() {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   const { colorSpace } = useColorSpaceStore();
+  const { toggleValue } = useToggleStore();
 
   const colors = colorNameList.reduce(
     (o, { name, hex }) => Object.assign(o, { [name]: hex }),
@@ -117,7 +119,9 @@ export default function Home() {
                         ? hslString.toUpperCase()
                         : color.toUpperCase()}
                     </h1>
-                    <p className="text-center">{nearest(color).name}</p>
+                    {toggleValue && (
+                      <p className="text-center">{nearest(color).name}</p>
+                    )}
                     <center className="lg:mt-5">
                       <div className="tooltip" data-tip={copyText}>
                         <button
