@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { SiTwitter } from "react-icons/si";
 import { TiArrowBack, TiArrowForward } from "react-icons/ti";
-import { Settings2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Settings2 } from "lucide-react";
 import Button from "@/component-elements/Button";
 
 const Header = ({ undo, currentIndex, redo, prevPalettes }: any) => {
@@ -29,16 +29,22 @@ const Header = ({ undo, currentIndex, redo, prevPalettes }: any) => {
       <div className="lg:flex items-center gap-7 hidden lg:visible">
         <div className="flex items-center">
           <Button onClick={undo} disabled={currentIndex === 1}>
-            <TiArrowBack />
+            {/* <TiArrowBack /> */}
+            <ChevronLeft />
           </Button>
           <Button
             onClick={redo}
             disabled={currentIndex === prevPalettes.length - 1}
           >
-            <TiArrowForward />
+            <ChevronRight />
+            {/* <TiArrowForward /> */}
           </Button>
         </div>
-        <Settings2 />
+        <div className="">
+          <Button>
+            <Settings2 size={20} />
+          </Button>
+        </div>
       </div>
     </>
   );
