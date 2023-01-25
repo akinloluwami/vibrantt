@@ -115,7 +115,7 @@ export default function Home() {
                         ? rgbString.toUpperCase()
                         : colorSpace === "HSL"
                         ? hslString.toUpperCase()
-                        : color}
+                        : color.toUpperCase()}
                     </h1>
                     <p className="text-center">{nearest(color).name}</p>
                     <center className="lg:mt-5">
