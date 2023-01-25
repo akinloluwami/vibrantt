@@ -6,7 +6,7 @@ interface State {
 }
 
 const useToggleStore = create<State>((set, get) => ({
-  toggleValue: false,
+  toggleValue: true,
   toggle: () => set((state) => ({ toggleValue: !state.toggleValue })),
 }));
 
