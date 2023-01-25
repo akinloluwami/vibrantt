@@ -16,6 +16,7 @@ import useColorSpaceStore from "@/stores/useColorSpaceStore";
 import hexToRgb from "@/utils/hexToRgb";
 import hexToHsl from "@/utils/hexToHsl";
 import useToggleStore from "@/stores/useToggleStore";
+import useLuminosityStore from "@/stores/useLuminosityStore";
 
 export default function Home() {
   const [palette, setPalette] = useState<string[]>([]);
@@ -25,6 +26,7 @@ export default function Home() {
 
   const { colorSpace } = useColorSpaceStore();
   const { toggleValue } = useToggleStore();
+  const { luminosity } = useLuminosityStore();
 
   const colors = colorNameList.reduce(
     (o, { name, hex }) => Object.assign(o, { [name]: hex }),
@@ -39,7 +41,19 @@ export default function Home() {
     // for (let i = 0; i < colors.length; i++) {
     //   console.log("%c  ", `background: ${colors[i]};`);
     // }
-    const newPalette: string[] = randomColor({ count: 5 });
+    const newPalette: string[] = randomColor({
+      count: 5,
+      luminosity:
+        luminosity === "Default"
+          ? "bright"
+          : luminosity === "Dark"
+          ? "dark"
+          : luminosity === "Light"
+          ? "light"
+          : luminosity === "Random"
+          ? "random"
+          : "bright",
+    });
     setPalette(newPalette);
     setPrevPalettes(
       produce(prevPalettes, (draft) => {
@@ -72,7 +86,7 @@ export default function Home() {
     generate();
   });
   const { isOpen, open, close } = useDrawerStore();
-
+  //#e50943 -> Cherry Velvet
   return (
     <div className="w-screen overflow-x-hidden  h-screen relative">
       <DrawerContext.Provider value={{ isOpen, open, close }}>
@@ -86,7 +100,6 @@ export default function Home() {
           />
         </div>
       </DrawerContext.Provider>
-
       {palette.length < 1 ? (
         <Loading />
       ) : (
