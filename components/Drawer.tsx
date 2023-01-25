@@ -8,6 +8,7 @@ const Drawer = () => {
   const { isOpen, close } = useDrawerStore();
 
   const colorSpaces = ["HEX", "RGB", "HSL"];
+  const luminosities = ["Default", "Light", "Dark", "Random"];
   return (
     <div
       className={`w-72 h-full shadow-2xl absolute bg-[#3e4452] right-0 ${
@@ -31,9 +32,19 @@ const Drawer = () => {
             ))}
           </select>
         </div>
-        <div className="flex items-center gap-2 w-full">
+        <div className="flex items-center gap-2 w-full mb-7">
           <p className="font-semibold">Color names</p>
           <Toggle />
+        </div>
+        <div className="flex items-center gap-2 w-full mb-7">
+          <p className="font-semibold">Luminosity</p>
+          <select name="" id="" className="flex-1 py-0 bg-[#2a303c]">
+            {luminosities.map((luminosity, i) => (
+              <option value={luminosity} key={i}>
+                {luminosity}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
     </div>
