@@ -18,6 +18,7 @@ export default function Home() {
   const [copyText, setCopyText] = useState<string>("Copy");
   const [prevPalettes, setPrevPalettes] = useState<string[][]>([[]]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const currentColorSpaces = "";
 
   const colors = colorNameList.reduce(
     (o, { name, hex }) => Object.assign(o, { [name]: hex }),
