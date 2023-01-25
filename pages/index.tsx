@@ -67,7 +67,7 @@ export default function Home() {
   const { isOpen, open, close } = useDrawerStore();
 
   return (
-    <div className="w-screen overflow-x-hidden  h-screen">
+    <div className="w-screen overflow-x-hidden  h-screen relative">
       <DrawerContext.Provider value={{ isOpen, open, close }}>
         <Drawer />
         <div className="flex shadow-sm items-center justify-between px-5 lg:h-[10%] h-[8%] relative">
