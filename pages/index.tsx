@@ -12,13 +12,15 @@ import Header from "@/components/Header";
 import useKeypress from "react-use-keypress";
 import Drawer from "@/components/Drawer";
 import useDrawerStore, { DrawerContext } from "@/stores/useDrawerStore";
+import useColorSpaceStore from "@/stores/useColorSpaceStore";
 
 export default function Home() {
   const [palette, setPalette] = useState<string[]>([]);
   const [copyText, setCopyText] = useState<string>("Copy");
   const [prevPalettes, setPrevPalettes] = useState<string[][]>([[]]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const currentColorSpaces = "";
+
+  const { colorSpace } = useColorSpaceStore();
 
   const colors = colorNameList.reduce(
     (o, { name, hex }) => Object.assign(o, { [name]: hex }),
