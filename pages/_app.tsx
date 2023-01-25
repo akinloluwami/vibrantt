@@ -4,6 +4,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import * as gtag from "../utils/gtag";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -45,6 +46,7 @@ export default function App({ Component, pageProps }: AppProps) {
           content="Generate beautiful color palettes for your creative needs."
         ></meta>
       </Head>
+      <Analytics />
       <Component {...pageProps} />
     </>
   );
