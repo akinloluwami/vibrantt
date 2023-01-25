@@ -2,6 +2,7 @@ import { create } from "zustand";
 
 interface ColorSpace {
   colorSpace: "hex" | "rgb" | "hsl";
+  setColorSpace: any;
 }
 
 const useColorSpaceStore = create<ColorSpace>((set) => ({
