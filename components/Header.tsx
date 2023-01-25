@@ -39,7 +39,7 @@ const Header = ({ undo, currentIndex, redo, prevPalettes }: any) => {
             <ChevronRight size={iconSize} />
           </Button>
         </div>
-        <div className="">
+        <div className="flex items-center">
           <Button>
             <Settings2 size={iconSize} />
           </Button>
