@@ -25,17 +25,17 @@ const Header = ({ undo, currentIndex, redo, prevPalettes }: any) => {
         Follow on Twitter
       </Link>
 
-      <div className="lg:flex items-center gap-2 hidden lg:visible">
-        <div className="flex items-center gap-2">
+      <div className="lg:flex items-center gap-7 hidden lg:visible">
+        <div className="flex items-center">
           <button
-            className="btn rounded-full text-lg bg-transparent outline-none border-none"
+            className="hover:bg-slate-700 bg-transparent transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-default mx-1 p-[2px] rounded-full text-lg outline-none border-none"
             onClick={undo}
             disabled={currentIndex === 1}
           >
             <TiArrowBack />
           </button>
           <button
-            className="btn rounded-full text-lg"
+            className="hover:bg-slate-700 bg-transparent transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-default mx-1 p-[2px] rounded-full text-lg outline-none border-none"
             onClick={redo}
             disabled={currentIndex === prevPalettes.length - 1}
           >
