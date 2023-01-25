@@ -5,15 +5,9 @@ import Button from "@/component-elements/Button";
 import { useContext } from "react";
 import { DrawerContext } from "@/stores/useDrawerStore";
 
-const Header = ({
-  undo,
-  currentIndex,
-  redo,
-  prevPalettes,
-  openDrawer,
-}: any) => {
+const Header = ({ undo, currentIndex, redo, prevPalettes }: any) => {
   const iconSize = 20;
-  const { isOpen, open, close } = useContext(DrawerContext);
+  const { open } = useContext(DrawerContext);
   return (
     <>
       <img
