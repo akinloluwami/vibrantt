@@ -1,6 +1,5 @@
 import Button from "@/component-elements/Button";
 import { X } from "lucide-react";
-import React from "react";
 
 const Drawer = () => {
   return (
