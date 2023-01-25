@@ -64,22 +64,15 @@ export default function Home() {
     generate();
   });
 
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
-  const openDrawer = () => {
-    console.log("open");
-    setIsDrawerOpen(true);
-  };
   return (
-    <div className="w-screen h-screen">
-      <Drawer isOpen={isDrawerOpen} />
+    <div className="w-screen overflow-x-hidden  h-screen">
+      <Drawer />
       <div className="flex shadow-sm items-center justify-between px-5 lg:h-[10%] h-[8%] relative">
         <Header
           undo={undo}
           currentIndex={currentIndex}
           redo={redo}
           prevPalettes={prevPalettes}
-          openDrawer={openDrawer}
         />
       </div>
 
