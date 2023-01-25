@@ -1,6 +1,7 @@
 import Button from "@/component-elements/Button";
 import useColorSpaceStore from "@/stores/useColorSpaceStore";
 import useDrawerStore, { DrawerContext } from "@/stores/useDrawerStore";
+import useLuminosityStore from "@/stores/useLuminosityStore";
 import useToggleStore from "@/stores/useToggleStore";
 import { X } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -12,8 +13,11 @@ const Drawer = () => {
   const colorSpaces = ["HEX", "RGB", "HSL"];
   const luminosities = ["Default", "Light", "Dark", "Random"];
   const [selectedColorSpace, setSelectedColorSpace] = useState<string>("HEX");
+  const [selectedLuminosity, setSelectedLuminosity] =
+    useState<string>("Default");
 
   const { setColorSpace } = useColorSpaceStore();
+  const { setLuminosity } = useLuminosityStore();
 
   useEffect(() => {
     switch (selectedColorSpace) {
@@ -28,6 +32,23 @@ const Drawer = () => {
         break;
     }
   }, [selectedColorSpace]);
+
+  useEffect(() => {
+    switch (selectedLuminosity) {
+      case "Default":
+        setLuminosity("Default");
+        break;
+      case "Light":
+        setLuminosity("Light");
+        break;
+      case "Dark":
+        setLuminosity("Dark");
+        break;
+      case "Random":
+        setLuminosity("Random");
+        break;
+    }
+  }, [selectedLuminosity]);
 
   const { toggleValue, toggle } = useToggleStore();
   return (
@@ -65,7 +86,12 @@ const Drawer = () => {
         </div>
         <div className="flex items-center gap-2 w-full mb-7">
           <p className="font-semibold">Luminosity</p>
-          <select name="" id="" className="flex-1 py-0 bg-[#2a303c]">
+          <select
+            name=""
+            id=""
+            className="flex-1 py-0 bg-[#2a303c]"
+            onChange={(e) => setSelectedLuminosity(e.target.value)}
+          >
             {luminosities.map((luminosity, i) => (
               <option value={luminosity} key={i}>
                 {luminosity}
