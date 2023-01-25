@@ -1,7 +1,8 @@
 import Button from "@/component-elements/Button";
+import useColorSpaceStore from "@/stores/useColorSpaceStore";
 import useDrawerStore, { DrawerContext } from "@/stores/useDrawerStore";
 import { X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Toggle from "./Toggle";
 
 const Drawer = () => {
@@ -9,6 +10,13 @@ const Drawer = () => {
 
   const colorSpaces = ["HEX", "RGB", "HSL"];
   const luminosities = ["Default", "Light", "Dark", "Random"];
+  const [selectedColorSpace, setSelectedColorSpace] = useState<string>("HEX");
+
+  const { colorSpace, setColorSpace } = useColorSpaceStore();
+  useEffect(() => {
+    setColorSpace(selectedColorSpace);
+  }, [selectedColorSpace]);
+
   return (
     <div
       className={`w-72 h-full shadow-2xl absolute bg-[#3e4452] right-0 ${
@@ -24,7 +32,13 @@ const Drawer = () => {
       <div className="w-full mt-5">
         <div className="flex items-center gap-2 w-full mb-7">
           <p className="font-semibold">Color space</p>
-          <select name="" id="" className="flex-1 py-0 bg-[#2a303c]">
+          <select
+            name=""
+            id=""
+            className="flex-1 py-0 bg-[#2a303c]"
+            value={selectedColorSpace}
+            onChange={(e) => setSelectedColorSpace(e.target.value)}
+          >
             {colorSpaces.map((colorSpace, i) => (
               <option value={colorSpace} key={i}>
                 {colorSpace}
