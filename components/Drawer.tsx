@@ -1,6 +1,7 @@
 import Button from "@/component-elements/Button";
 import useColorSpaceStore from "@/stores/useColorSpaceStore";
 import useDrawerStore, { DrawerContext } from "@/stores/useDrawerStore";
+import useToggleStore from "@/stores/useToggleStore";
 import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 import Toggle from "./Toggle";
@@ -28,6 +29,7 @@ const Drawer = () => {
     }
   }, [selectedColorSpace]);
 
+  const { toggleValue, toggle } = useToggleStore();
   return (
     <div
       className={`w-72 h-full shadow-2xl absolute bg-[#3e4452] right-0 ${
@@ -59,7 +61,7 @@ const Drawer = () => {
         </div>
         <div className="flex items-center gap-2 w-full mb-7">
           <p className="font-semibold">Color names</p>
-          <Toggle />
+          <Toggle isOn={toggleValue} onClick={toggle} />
         </div>
         <div className="flex items-center gap-2 w-full mb-7">
           <p className="font-semibold">Luminosity</p>
