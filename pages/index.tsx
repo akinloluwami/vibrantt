@@ -10,12 +10,23 @@ import produce from "immer";
 import { TiArrowBack, TiArrowForward } from "react-icons/ti";
 import Header from "@/components/Header";
 import useKeypress from "react-use-keypress";
+import Drawer from "@/components/Drawer";
+import useDrawerStore, { DrawerContext } from "@/stores/useDrawerStore";
+import useColorSpaceStore from "@/stores/useColorSpaceStore";
+import hexToRgb from "@/utils/hexToRgb";
+import hexToHsl from "@/utils/hexToHsl";
+import useToggleStore from "@/stores/useToggleStore";
+import useLuminosityStore from "@/stores/useLuminosityStore";
 
 export default function Home() {
   const [palette, setPalette] = useState<string[]>([]);
   const [copyText, setCopyText] = useState<string>("Copy");
   const [prevPalettes, setPrevPalettes] = useState<string[][]>([[]]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+
+  const { colorSpace } = useColorSpaceStore();
+  const { toggleValue } = useToggleStore();
+  const { luminosity } = useLuminosityStore();
 
   const colors = colorNameList.reduce(
     (o, { name, hex }) => Object.assign(o, { [name]: hex }),
@@ -30,7 +41,19 @@ export default function Home() {
     // for (let i = 0; i < colors.length; i++) {
     //   console.log("%c  ", `background: ${colors[i]};`);
     // }
-    const newPalette: string[] = randomColor({ count: 5 });
+    const newPalette: string[] = randomColor({
+      count: 5,
+      luminosity:
+        luminosity === "Default"
+          ? "bright"
+          : luminosity === "Dark"
+          ? "dark"
+          : luminosity === "Light"
+          ? "light"
+          : luminosity === "Random"
+          ? "random"
+          : "bright",
+    });
     setPalette(newPalette);
     setPrevPalettes(
       produce(prevPalettes, (draft) => {
@@ -62,18 +85,21 @@ export default function Home() {
   useKeypress(" ", () => {
     generate();
   });
-
+  const { isOpen, open, close } = useDrawerStore();
+  //#e50943 -> Cherry Velvet
   return (
-    <div className="w-screen h-screen">
-      <div className="flex shadow-sm items-center justify-between px-5 lg:h-[10%] h-[8%] relative">
-        <Header
-          undo={undo}
-          currentIndex={currentIndex}
-          redo={redo}
-          prevPalettes={prevPalettes}
-        />
-      </div>
-
+    <div className="w-screen overflow-x-hidden  h-screen relative">
+      <DrawerContext.Provider value={{ isOpen, open, close }}>
+        <Drawer />
+        <div className="flex shadow-sm items-center justify-between px-5 lg:h-[10%] h-[8%] relative">
+          <Header
+            undo={undo}
+            currentIndex={currentIndex}
+            redo={redo}
+            prevPalettes={prevPalettes}
+          />
+        </div>
+      </DrawerContext.Provider>
       {palette.length < 1 ? (
         <Loading />
       ) : (
@@ -81,6 +107,12 @@ export default function Home() {
           <div className="flex items-center justify-start lg:h-[90%] h-[84%] lg:flex-row flex-col">
             {palette.map((color, i) => {
               const luminosity = getLuminosity(color);
+              const rgb = hexToRgb(color);
+              const { r, g, b } = rgb;
+              const rgbString = `rgb(${r},${g},${b})`;
+              const hsl = hexToHsl(color);
+              const { h, s, l } = hsl;
+              const hslString = `hsl(${h},${s},${l})`;
               const textColor = luminosity >= 128 ? "text-black" : "text-white";
               return (
                 <div
@@ -92,11 +124,17 @@ export default function Home() {
                 >
                   <div className={`${textColor}`}>
                     <h1
-                      className={`lg:text-4xl text-xl font-semibold text-center`}
+                      className={`lg:text-2xl text-xl font-semibold text-center`}
                     >
-                      {color.toUpperCase()}
+                      {colorSpace === "RGB"
+                        ? rgbString.toUpperCase()
+                        : colorSpace === "HSL"
+                        ? hslString.toUpperCase()
+                        : color.toUpperCase()}
                     </h1>
-                    <p className="text-center">{nearest(color).name}</p>
+                    {toggleValue && (
+                      <p className="text-center">{nearest(color).name}</p>
+                    )}
                     <center className="lg:mt-5">
                       <div className="tooltip" data-tip={copyText}>
                         <button

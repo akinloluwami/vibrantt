@@ -1,8 +1,13 @@
 import Link from "next/link";
 import { SiTwitter } from "react-icons/si";
-import { TiArrowBack, TiArrowForward } from "react-icons/ti";
+import { ChevronLeft, ChevronRight, Settings2 } from "lucide-react";
+import Button from "@/component-elements/Button";
+import { useContext } from "react";
+import { DrawerContext } from "@/stores/useDrawerStore";
 
 const Header = ({ undo, currentIndex, redo, prevPalettes }: any) => {
+  const iconSize = 20;
+  const { open } = useContext(DrawerContext);
   return (
     <>
       <img
@@ -24,21 +29,23 @@ const Header = ({ undo, currentIndex, redo, prevPalettes }: any) => {
         Follow on Twitter
       </Link>
 
-      <div className="lg:flex items-center gap-2 hidden lg:visible">
-        <button
-          className="btn rounded-full text-lg"
-          onClick={undo}
-          disabled={currentIndex === 1}
-        >
-          <TiArrowBack />
-        </button>
-        <button
-          className="btn rounded-full text-lg"
-          onClick={redo}
-          disabled={currentIndex === prevPalettes.length - 1}
-        >
-          <TiArrowForward />
-        </button>
+      <div className="lg:flex items-center gap-7 hidden lg:visible">
+        <div className="flex items-center">
+          <Button onClick={undo} disabled={currentIndex === 1}>
+            <ChevronLeft size={iconSize} />
+          </Button>
+          <Button
+            onClick={redo}
+            disabled={currentIndex === prevPalettes.length - 1}
+          >
+            <ChevronRight size={iconSize} />
+          </Button>
+        </div>
+        <div className="flex items-center">
+          <Button onClick={open}>
+            <Settings2 size={iconSize} />
+          </Button>
+        </div>
       </div>
     </>
   );
