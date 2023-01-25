@@ -13,6 +13,8 @@ import useKeypress from "react-use-keypress";
 import Drawer from "@/components/Drawer";
 import useDrawerStore, { DrawerContext } from "@/stores/useDrawerStore";
 import useColorSpaceStore from "@/stores/useColorSpaceStore";
+import hexToRgb from "@/utils/hexToRgb";
+import hexToHsl from "@/utils/hexToHsl";
 
 export default function Home() {
   const [palette, setPalette] = useState<string[]>([]);
@@ -90,6 +92,12 @@ export default function Home() {
           <div className="flex items-center justify-start lg:h-[90%] h-[84%] lg:flex-row flex-col">
             {palette.map((color, i) => {
               const luminosity = getLuminosity(color);
+              const rgb = hexToRgb(color);
+              const { r, g, b } = rgb;
+              const rgbString = `rgb(${r},${g},${b})`;
+              const hsl = hexToHsl(color);
+              const { h, s, l } = hsl;
+              const hslString = `hsl(${h},${s},${l})`;
               const textColor = luminosity >= 128 ? "text-black" : "text-white";
               return (
                 <div
@@ -101,9 +109,13 @@ export default function Home() {
                 >
                   <div className={`${textColor}`}>
                     <h1
-                      className={`lg:text-4xl text-xl font-semibold text-center`}
+                      className={`lg:text-2xl text-xl font-semibold text-center`}
                     >
-                      {color.toUpperCase()}
+                      {colorSpace === "RGB"
+                        ? rgbString.toUpperCase()
+                        : colorSpace === "HSL"
+                        ? hslString.toUpperCase()
+                        : color}
                     </h1>
                     <p className="text-center">{nearest(color).name}</p>
                     <center className="lg:mt-5">
