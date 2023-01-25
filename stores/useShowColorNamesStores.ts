@@ -1,15 +1,12 @@
-import { create } from "zustand";
+import create from "zustand";
 
-interface showColorNamesState {
-  isOpen: boolean;
-  open: any;
-  close: any;
+interface State {
+  toggleValue: boolean;
 }
 
-const useShowColorNamesStore = create<showColorNamesState>((set, get) => ({
-  isOpen: false,
-  open: () => set((state) => ({ ...state, isOpen: true })),
-  close: () => set((state) => ({ ...state, isOpen: false })),
+const useToggleStore = create<State>((set, get) => ({
+  toggleValue: false,
+  toggle: () => set((state) => ({ toggleValue: !state.toggleValue })),
 }));
 
-export default useShowColorNamesStore;
+export default useToggleStore;
