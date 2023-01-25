@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { SiTwitter } from "react-icons/si";
-import { TiArrowBack, TiArrowForward } from "react-icons/ti";
 import { ChevronLeft, ChevronRight, Settings2 } from "lucide-react";
 import Button from "@/component-elements/Button";
 import { useContext } from "react";
