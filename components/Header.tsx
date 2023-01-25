@@ -3,6 +3,8 @@ import { SiTwitter } from "react-icons/si";
 import { TiArrowBack, TiArrowForward } from "react-icons/ti";
 import { ChevronLeft, ChevronRight, Settings2 } from "lucide-react";
 import Button from "@/component-elements/Button";
+import { useContext } from "react";
+import { DrawerContext } from "@/stores/useDrawerStore";
 
 const Header = ({
   undo,
@@ -12,6 +14,7 @@ const Header = ({
   openDrawer,
 }: any) => {
   const iconSize = 20;
+  const { isOpen, open, close } = useContext(DrawerContext);
   return (
     <>
       <img
@@ -46,7 +49,7 @@ const Header = ({
           </Button>
         </div>
         <div className="flex items-center">
-          <Button onClick={openDrawer}>
+          <Button onClick={open}>
             <Settings2 size={iconSize} />
           </Button>
         </div>

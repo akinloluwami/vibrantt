@@ -1,3 +1,4 @@
+import { createContext } from "react";
 import { create } from "zustand";
 
 interface DrawerState {
@@ -6,6 +7,16 @@ interface DrawerState {
   close: any;
 }
 
+const DrawerContext = createContext<{
+  isOpen: boolean;
+  open: () => void;
+  close: () => void;
+}>({
+  isOpen: false,
+  open: () => {},
+  close: () => {},
+});
+
 const useDrawerStore = create<DrawerState>((set, get) => ({
   isOpen: false,
   open: () => set((state) => ({ ...state, isOpen: true })),
@@ -13,3 +24,4 @@ const useDrawerStore = create<DrawerState>((set, get) => ({
 }));
 
 export default useDrawerStore;
+export { DrawerContext };
