@@ -2,6 +2,7 @@ import Link from "next/link";
 import { SiTwitter } from "react-icons/si";
 import { TiArrowBack, TiArrowForward } from "react-icons/ti";
 import { Settings2 } from "lucide-react";
+import Button from "@/component-elements/Button";
 
 const Header = ({ undo, currentIndex, redo, prevPalettes }: any) => {
   return (
@@ -27,20 +28,15 @@ const Header = ({ undo, currentIndex, redo, prevPalettes }: any) => {
 
       <div className="lg:flex items-center gap-7 hidden lg:visible">
         <div className="flex items-center">
-          <button
-            className="hover:bg-slate-700 bg-transparent transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-default mx-1 p-[2px] rounded-full text-lg outline-none border-none"
-            onClick={undo}
-            disabled={currentIndex === 1}
-          >
+          <Button onClick={undo} disabled={currentIndex === 1}>
             <TiArrowBack />
-          </button>
-          <button
-            className="hover:bg-slate-700 bg-transparent transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-default mx-1 p-[2px] rounded-full text-lg outline-none border-none"
+          </Button>
+          <Button
             onClick={redo}
             disabled={currentIndex === prevPalettes.length - 1}
           >
             <TiArrowForward />
-          </button>
+          </Button>
         </div>
         <Settings2 />
       </div>
