@@ -10,6 +10,7 @@ import produce from "immer";
 import { TiArrowBack, TiArrowForward } from "react-icons/ti";
 import Header from "@/components/Header";
 import useKeypress from "react-use-keypress";
+import Drawer from "@/components/Drawer";
 
 export default function Home() {
   const [palette, setPalette] = useState<string[]>([]);
@@ -65,6 +66,7 @@ export default function Home() {
 
   return (
     <div className="w-screen h-screen">
+      <Drawer />
       <div className="flex shadow-sm items-center justify-between px-5 lg:h-[10%] h-[8%] relative">
         <Header
           undo={undo}
