@@ -4,7 +4,13 @@ import { TiArrowBack, TiArrowForward } from "react-icons/ti";
 import { ChevronLeft, ChevronRight, Settings2 } from "lucide-react";
 import Button from "@/component-elements/Button";
 
-const Header = ({ undo, currentIndex, redo, prevPalettes }: any) => {
+const Header = ({
+  undo,
+  currentIndex,
+  redo,
+  prevPalettes,
+  openDrawer,
+}: any) => {
   const iconSize = 20;
   return (
     <>
@@ -40,7 +46,7 @@ const Header = ({ undo, currentIndex, redo, prevPalettes }: any) => {
           </Button>
         </div>
         <div className="flex items-center">
-          <Button>
+          <Button onClick={openDrawer}>
             <Settings2 size={iconSize} />
           </Button>
         </div>
