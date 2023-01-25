@@ -12,9 +12,20 @@ const Drawer = () => {
   const luminosities = ["Default", "Light", "Dark", "Random"];
   const [selectedColorSpace, setSelectedColorSpace] = useState<string>("HEX");
 
-  const { colorSpace, setColorSpace } = useColorSpaceStore();
+  const { setColorSpace } = useColorSpaceStore();
+
   useEffect(() => {
-    setColorSpace(selectedColorSpace);
+    switch (selectedColorSpace) {
+      case "HEX":
+        setColorSpace("HEX");
+        break;
+      case "RGB":
+        setColorSpace("RGB");
+        break;
+      case "HSL":
+        setColorSpace("HSL");
+        break;
+    }
   }, [selectedColorSpace]);
 
   return (
