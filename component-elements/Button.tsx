@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button = () => {
+const Button = ({ children, onClick, disabled }: any) => {
   return <div>Button</div>;
 };
 
