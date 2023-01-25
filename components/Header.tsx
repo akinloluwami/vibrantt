@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight, Settings2 } from "lucide-react";
 import Button from "@/component-elements/Button";
 
 const Header = ({ undo, currentIndex, redo, prevPalettes }: any) => {
+  const iconSize = 20;
   return (
     <>
       <img
@@ -29,20 +30,18 @@ const Header = ({ undo, currentIndex, redo, prevPalettes }: any) => {
       <div className="lg:flex items-center gap-7 hidden lg:visible">
         <div className="flex items-center">
           <Button onClick={undo} disabled={currentIndex === 1}>
-            {/* <TiArrowBack /> */}
-            <ChevronLeft />
+            <ChevronLeft size={iconSize} />
           </Button>
           <Button
             onClick={redo}
             disabled={currentIndex === prevPalettes.length - 1}
           >
-            <ChevronRight />
-            {/* <TiArrowForward /> */}
+            <ChevronRight size={iconSize} />
           </Button>
         </div>
         <div className="">
           <Button>
-            <Settings2 size={20} />
+            <Settings2 size={iconSize} />
           </Button>
         </div>
       </div>
