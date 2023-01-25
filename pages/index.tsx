@@ -11,6 +11,7 @@ import { TiArrowBack, TiArrowForward } from "react-icons/ti";
 import Header from "@/components/Header";
 import useKeypress from "react-use-keypress";
 import Drawer from "@/components/Drawer";
+import useDrawerStore, { DrawerContext } from "@/stores/useDrawerStore";
 
 export default function Home() {
   const [palette, setPalette] = useState<string[]>([]);
@@ -63,18 +64,21 @@ export default function Home() {
   useKeypress(" ", () => {
     generate();
   });
+  const { isOpen, open, close } = useDrawerStore();
 
   return (
     <div className="w-screen overflow-x-hidden  h-screen">
-      <Drawer />
-      <div className="flex shadow-sm items-center justify-between px-5 lg:h-[10%] h-[8%] relative">
-        <Header
-          undo={undo}
-          currentIndex={currentIndex}
-          redo={redo}
-          prevPalettes={prevPalettes}
-        />
-      </div>
+      <DrawerContext.Provider value={{ isOpen, open, close }}>
+        <Drawer />
+        <div className="flex shadow-sm items-center justify-between px-5 lg:h-[10%] h-[8%] relative">
+          <Header
+            undo={undo}
+            currentIndex={currentIndex}
+            redo={redo}
+            prevPalettes={prevPalettes}
+          />
+        </div>
+      </DrawerContext.Provider>
 
       {palette.length < 1 ? (
         <Loading />
