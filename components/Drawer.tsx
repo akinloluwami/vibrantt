@@ -21,7 +21,7 @@ const Drawer = () => {
         </Button>
       </div>
       <div className="w-full mt-5">
-        <div className="flex items-center gap-2 w-full my-5">
+        <div className="flex items-center gap-2 w-full mb-7">
           <p className="font-semibold">Color space</p>
           <select name="" id="" className="flex-1 py-0 bg-[#2a303c]">
             {colorSpaces.map((colorSpace, i) => (
