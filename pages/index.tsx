@@ -29,6 +29,10 @@ export default function Home() {
   const { colorSpace } = useColorSpaceStore();
   const { toggleValue } = useToggleStore();
   const { luminosity } = useLuminosityStore();
+  // const [showTools, setShowTools] = useState(Array(colorCount).fill(false));
+  const [showToolsArray, setShowToolsArray] = useState(
+    Array(colorCount).fill(false)
+  );
 
   const colors = colorNameList.reduce(
     (o, { name, hex }) => Object.assign(o, { [name]: hex }),
@@ -125,12 +129,27 @@ export default function Home() {
               const { h, s, l } = hsl;
               const hslString = `hsl(${h},${s},${l})`;
               const textColor = luminosity >= 128 ? "text-black" : "text-white";
+
               return (
                 <div
                   key={i}
                   className={`lg:h-full h-[20%] flex-1  w-full flex items-center justify-center`}
                   style={{
                     backgroundColor: color,
+                  }}
+                  onMouseOver={() => {
+                    setShowToolsArray((prevState) => {
+                      const newState = [...prevState];
+                      newState[i] = true;
+                      return newState;
+                    });
+                  }}
+                  onMouseOut={() => {
+                    setShowToolsArray((prevState) => {
+                      const newState = [...prevState];
+                      newState[i] = false;
+                      return newState;
+                    });
                   }}
                 >
                   <div className={`${textColor}`}>
@@ -146,34 +165,36 @@ export default function Home() {
                     {toggleValue && (
                       <p className="text-center">{nearest(color).name}</p>
                     )}
-                    <center className="lg:mt-5 flex flex-col items-center">
-                      <div className="tooltip" data-tip={copyText}>
-                        <button
-                          className="text-2xl"
-                          onClick={() => {
-                            copy(color);
-                            setCopyText("Copied");
-                            setTimeout(() => {
-                              setCopyText("Copy");
-                            }, 750);
-                          }}
-                        >
-                          <BiCopy />
-                        </button>
-                      </div>
-                      {palette.length > 2 && (
-                        <div className="tooltip" data-tip={"Remove color"}>
+                    {showToolsArray[i] && (
+                      <center className="lg:mt-5 flex flex-col items-center">
+                        <div className="tooltip" data-tip={copyText}>
                           <button
                             className="text-2xl"
                             onClick={() => {
-                              removeColor(color);
+                              copy(color);
+                              setCopyText("Copied");
+                              setTimeout(() => {
+                                setCopyText("Copy");
+                              }, 750);
                             }}
                           >
-                            <X />
+                            <BiCopy />
                           </button>
                         </div>
-                      )}
-                    </center>
+                        {palette.length > 2 && (
+                          <div className="tooltip" data-tip={"Remove color"}>
+                            <button
+                              className="text-2xl"
+                              onClick={() => {
+                                removeColor(color);
+                              }}
+                            >
+                              <X />
+                            </button>
+                          </div>
+                        )}
+                      </center>
+                    )}
                   </div>
                 </div>
               );
