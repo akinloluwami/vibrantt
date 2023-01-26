@@ -17,6 +17,7 @@ import hexToRgb from "@/utils/hexToRgb";
 import hexToHsl from "@/utils/hexToHsl";
 import useToggleStore from "@/stores/useToggleStore";
 import useLuminosityStore from "@/stores/useLuminosityStore";
+import Button from "@/component-elements/Button";
 
 export default function Home() {
   const [palette, setPalette] = useState<string[]>([]);
@@ -163,20 +164,15 @@ export default function Home() {
               Generate
             </button>
             <div className="flex gap-3">
-              <button
-                className="btn rounded-full text-lg"
-                onClick={undo}
-                disabled={currentIndex === 1}
-              >
+              <Button onClick={undo} disabled={currentIndex === 1}>
                 <TiArrowBack />
-              </button>
-              <button
-                className="btn rounded-full text-lg"
+              </Button>
+              <Button
                 onClick={redo}
                 disabled={currentIndex === prevPalettes.length - 1}
               >
                 <TiArrowForward />
-              </button>
+              </Button>
             </div>
           </div>
         </>
