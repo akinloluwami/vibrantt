@@ -1,5 +1,5 @@
 import randomColor from "randomcolor";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BiCopy } from "react-icons/bi";
 import copy from "copy-to-clipboard";
 import { getLuminosity } from "@/utils/getLuminosity";
@@ -177,7 +177,7 @@ export default function Home() {
                 </Button>
               </div>
               <div className="flex items-center">
-                <Button>
+                <Button onClick={open}>
                   <Settings2 />
                 </Button>
               </div>
