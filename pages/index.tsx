@@ -124,11 +124,10 @@ export default function Home() {
     <div className="w-screen overflow-x-hidden  h-screen relative">
       <button
         className={`hidden h-12 w-12 bg-slate-900 shadow-sm lg:flex items-center justify-center rounded-full absolute bottom-7 lg:right-5 ${
-          colorCount === 10 && "opacity-0 pointer-events-none tooltip"
+          colorCount === 10 && "opacity-0 pointer-events-none"
         } transition-opacity`}
         disabled={colorCount === 10}
         onClick={addNewColor}
-        data-tip={"Add new color"}
       >
         <Plus />
       </button>
