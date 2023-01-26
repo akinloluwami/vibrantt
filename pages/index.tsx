@@ -102,6 +102,12 @@ export default function Home() {
     setColorCount(updatedPalette.length);
   };
 
+  const addNewColor = () => {
+    setColorCount(colorCount - 1);
+    const newColor = randomColor({ count: 1 });
+    setPalette([...palette, newColor[0]]);
+  };
+
   return (
     <div className="w-screen overflow-x-hidden  h-screen relative">
       <button className="h-12 w-12 bg-slate-900 shadow-sm flex items-center justify-center rounded-full absolute bottom-7 lg:right-5">
