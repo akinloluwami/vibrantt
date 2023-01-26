@@ -165,36 +165,39 @@ export default function Home() {
                     {toggleValue && (
                       <p className="text-center">{nearest(color).name}</p>
                     )}
-                    {showToolsArray[i] && (
-                      <center className="lg:mt-5 flex flex-col items-center">
-                        <div className="tooltip" data-tip={copyText}>
+
+                    <center
+                      className={`lg:mt-5 flex flex-col items-center ${
+                        showToolsArray[i] ? "opacity-100" : "opacity-0"
+                      }  transition-opacity `}
+                    >
+                      <div className="tooltip" data-tip={copyText}>
+                        <button
+                          className="text-2xl"
+                          onClick={() => {
+                            copy(color);
+                            setCopyText("Copied");
+                            setTimeout(() => {
+                              setCopyText("Copy");
+                            }, 750);
+                          }}
+                        >
+                          <BiCopy />
+                        </button>
+                      </div>
+                      {palette.length > 2 && (
+                        <div className="tooltip" data-tip={"Remove color"}>
                           <button
                             className="text-2xl"
                             onClick={() => {
-                              copy(color);
-                              setCopyText("Copied");
-                              setTimeout(() => {
-                                setCopyText("Copy");
-                              }, 750);
+                              removeColor(color);
                             }}
                           >
-                            <BiCopy />
+                            <X />
                           </button>
                         </div>
-                        {palette.length > 2 && (
-                          <div className="tooltip" data-tip={"Remove color"}>
-                            <button
-                              className="text-2xl"
-                              onClick={() => {
-                                removeColor(color);
-                              }}
-                            >
-                              <X />
-                            </button>
-                          </div>
-                        )}
-                      </center>
-                    )}
+                      )}
+                    </center>
                   </div>
                 </div>
               );
