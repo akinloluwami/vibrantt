@@ -110,7 +110,10 @@ export default function Home() {
 
   return (
     <div className="w-screen overflow-x-hidden  h-screen relative">
-      <button className="h-12 w-12 bg-slate-900 shadow-sm flex items-center justify-center rounded-full absolute bottom-7 lg:right-5">
+      <button
+        className="h-12 w-12 bg-slate-900 shadow-sm flex items-center justify-center rounded-full absolute bottom-7 lg:right-5"
+        onClick={addNewColor}
+      >
         <Plus />
       </button>
       <DrawerContext.Provider value={{ isOpen, open, close }}>
