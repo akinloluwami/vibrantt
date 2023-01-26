@@ -18,6 +18,7 @@ import hexToHsl from "@/utils/hexToHsl";
 import useToggleStore from "@/stores/useToggleStore";
 import useLuminosityStore from "@/stores/useLuminosityStore";
 import Button from "@/component-elements/Button";
+import { ChevronLeft, ChevronRight, Settings2 } from "lucide-react";
 
 export default function Home() {
   const [palette, setPalette] = useState<string[]>([]);
