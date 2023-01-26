@@ -7,7 +7,6 @@ import nearestColor from "nearest-color";
 import colorNameList from "color-name-list";
 import Loading from "./loading";
 import produce from "immer";
-import { TiArrowBack, TiArrowForward } from "react-icons/ti";
 import Header from "@/components/Header";
 import useKeypress from "react-use-keypress";
 import Drawer from "@/components/Drawer";
