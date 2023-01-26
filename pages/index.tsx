@@ -44,7 +44,7 @@ export default function Home() {
     //   console.log("%c  ", `background: ${colors[i]};`);
     // }
     const newPalette: string[] = randomColor({
-      count: 2,
+      count: 5,
       luminosity:
         luminosity === "Default"
           ? "bright"
