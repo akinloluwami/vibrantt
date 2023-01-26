@@ -121,7 +121,7 @@ export default function Home() {
               return (
                 <div
                   key={i}
-                  className={`lg:h-full h-[20%] lg:w-[20%]  w-full flex items-center justify-center`}
+                  className={`lg:h-full h-[20%] lg:flex-1  w-full flex items-center justify-center`}
                   style={{
                     backgroundColor: color,
                   }}
