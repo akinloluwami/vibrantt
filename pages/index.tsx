@@ -181,7 +181,9 @@ export default function Home() {
                 >
                   <div className={`${textColor}`}>
                     <h1
-                      className={`lg:text-2xl text-xl font-semibold text-center`}
+                      className={`${
+                        colorCount > 7 ? "lg:text-lg" : "lg:text-2xl"
+                      } text-xl font-semibold text-center`}
                     >
                       {colorSpace === "RGB"
                         ? rgbString.toUpperCase()
