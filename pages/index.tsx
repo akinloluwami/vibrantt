@@ -197,7 +197,7 @@ export default function Home() {
 
                     <center
                       className={`lg:mt-5 flex flex-col items-center ${
-                        showToolsArray[i] ? "opacity-100" : "opacity-0"
+                        showToolsArray[i] ? "lg:opacity-100" : "lg:opacity-0"
                       }  transition-opacity `}
                     >
                       <div className="tooltip" data-tip={copyText}>
