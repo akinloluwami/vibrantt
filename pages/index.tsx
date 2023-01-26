@@ -160,16 +160,18 @@ export default function Home() {
                           <BiCopy />
                         </button>
                       </div>
-                      <div className="tooltip" data-tip={"Remove color"}>
-                        <button
-                          className="text-2xl"
-                          onClick={() => {
-                            removeColor(color);
-                          }}
-                        >
-                          <X />
-                        </button>
-                      </div>
+                      {palette.length > 2 && (
+                        <div className="tooltip" data-tip={"Remove color"}>
+                          <button
+                            className="text-2xl"
+                            onClick={() => {
+                              removeColor(color);
+                            }}
+                          >
+                            <X />
+                          </button>
+                        </div>
+                      )}
                     </center>
                   </div>
                 </div>
