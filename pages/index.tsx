@@ -215,7 +215,7 @@ export default function Home() {
                       {palette.length > 2 && (
                         <div className="tooltip" data-tip={"Remove color"}>
                           <button
-                            className="text-2xl"
+                            className="text-2xl hidden lg:block"
                             onClick={() => {
                               removeColor(color);
                             }}
