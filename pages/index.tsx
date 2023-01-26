@@ -18,7 +18,7 @@ import hexToHsl from "@/utils/hexToHsl";
 import useToggleStore from "@/stores/useToggleStore";
 import useLuminosityStore from "@/stores/useLuminosityStore";
 import Button from "@/component-elements/Button";
-import { ChevronLeft, ChevronRight, Settings2, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Plus, Settings2, X } from "lucide-react";
 
 export default function Home() {
   const [palette, setPalette] = useState<string[]>([]);
@@ -104,6 +104,9 @@ export default function Home() {
 
   return (
     <div className="w-screen overflow-x-hidden  h-screen relative">
+      <button className="h-12 w-12 bg-slate-900 shadow-sm flex items-center justify-center rounded-full absolute bottom-7 lg:right-5">
+        <Plus />
+      </button>
       <DrawerContext.Provider value={{ isOpen, open, close }}>
         <Drawer />
         <div className="flex shadow-sm items-center justify-between px-5 lg:h-[10%] h-[8%] relative">
