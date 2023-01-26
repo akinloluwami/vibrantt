@@ -25,7 +25,7 @@ export default function Home() {
   const [copyText, setCopyText] = useState<string>("Copy");
   const [prevPalettes, setPrevPalettes] = useState<string[][]>([[]]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-
+  const [colorCount, setColorCount] = useState<number>(5);
   const { colorSpace } = useColorSpaceStore();
   const { toggleValue } = useToggleStore();
   const { luminosity } = useLuminosityStore();
@@ -44,7 +44,7 @@ export default function Home() {
     //   console.log("%c  ", `background: ${colors[i]};`);
     // }
     const newPalette: string[] = randomColor({
-      count: 5,
+      count: colorCount,
       luminosity:
         luminosity === "Default"
           ? "bright"
