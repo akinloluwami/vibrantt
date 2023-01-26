@@ -166,13 +166,13 @@ export default function Home() {
             </button>
             <div className="flex gap-3">
               <Button onClick={undo} disabled={currentIndex === 1}>
-                <TiArrowBack />
+                <ChevronLeft />
               </Button>
               <Button
                 onClick={redo}
                 disabled={currentIndex === prevPalettes.length - 1}
               >
-                <TiArrowForward />
+                <ChevronRight />
               </Button>
             </div>
           </div>
