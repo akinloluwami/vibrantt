@@ -95,6 +95,7 @@ export default function Home() {
   const removeColor = (color: string) => {
     const updatedPalette = palette.filter((col) => col !== color);
     setPalette(updatedPalette);
+    setColorCount(updatedPalette.length);
   };
 
   return (
