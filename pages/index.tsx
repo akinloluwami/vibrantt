@@ -18,17 +18,21 @@ import hexToHsl from "@/utils/hexToHsl";
 import useToggleStore from "@/stores/useToggleStore";
 import useLuminosityStore from "@/stores/useLuminosityStore";
 import Button from "@/component-elements/Button";
-import { ChevronLeft, ChevronRight, Settings2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Plus, Settings2, X } from "lucide-react";
 
 export default function Home() {
   const [palette, setPalette] = useState<string[]>([]);
   const [copyText, setCopyText] = useState<string>("Copy");
   const [prevPalettes, setPrevPalettes] = useState<string[][]>([[]]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-
+  const [colorCount, setColorCount] = useState<number>(5);
   const { colorSpace } = useColorSpaceStore();
   const { toggleValue } = useToggleStore();
   const { luminosity } = useLuminosityStore();
+  // const [showTools, setShowTools] = useState(Array(colorCount).fill(false));
+  const [showToolsArray, setShowToolsArray] = useState(
+    Array(colorCount).fill(false)
+  );
 
   const colors = colorNameList.reduce(
     (o, { name, hex }) => Object.assign(o, { [name]: hex }),
@@ -44,7 +48,7 @@ export default function Home() {
     //   console.log("%c  ", `background: ${colors[i]};`);
     // }
     const newPalette: string[] = randomColor({
-      count: 5,
+      count: colorCount,
       luminosity:
         luminosity === "Default"
           ? "bright"
@@ -91,8 +95,42 @@ export default function Home() {
   //#e50943 -> Cherry Velvet
   //#e5e509 -> Peridot
   // >> #56028e -> SQL Injection Purple
+
+  const removeColor = (color: string) => {
+    const updatedPalette = palette.filter((col) => col !== color);
+    setPalette(updatedPalette);
+    setColorCount(updatedPalette.length);
+  };
+
+  const addNewColor = () => {
+    setColorCount(colorCount + 1);
+    const newColor = randomColor({
+      count: 1,
+      luminosity:
+        luminosity === "Default"
+          ? "bright"
+          : luminosity === "Dark"
+          ? "dark"
+          : luminosity === "Light"
+          ? "light"
+          : luminosity === "Random"
+          ? "random"
+          : "bright",
+    });
+    setPalette([...palette, newColor[0]]);
+  };
+
   return (
     <div className="w-screen overflow-x-hidden  h-screen relative">
+      <button
+        className={`hidden h-12 w-12 bg-slate-900 shadow-sm lg:flex items-center justify-center rounded-full absolute bottom-7 lg:right-5 ${
+          colorCount === 10 && "opacity-0 pointer-events-none"
+        } transition-opacity`}
+        disabled={colorCount === 10}
+        onClick={addNewColor}
+      >
+        <Plus />
+      </button>
       <DrawerContext.Provider value={{ isOpen, open, close }}>
         <Drawer />
         <div className="flex shadow-sm items-center justify-between px-5 lg:h-[10%] h-[8%] relative">
@@ -118,17 +156,34 @@ export default function Home() {
               const { h, s, l } = hsl;
               const hslString = `hsl(${h},${s},${l})`;
               const textColor = luminosity >= 128 ? "text-black" : "text-white";
+
               return (
                 <div
                   key={i}
-                  className={`lg:h-full h-[20%] lg:w-[20%]  w-full flex items-center justify-center`}
+                  className={`lg:h-full h-[20%] flex-1  w-full flex items-center justify-center`}
                   style={{
                     backgroundColor: color,
+                  }}
+                  onMouseOver={() => {
+                    setShowToolsArray((prevState) => {
+                      const newState = [...prevState];
+                      newState[i] = true;
+                      return newState;
+                    });
+                  }}
+                  onMouseOut={() => {
+                    setShowToolsArray((prevState) => {
+                      const newState = [...prevState];
+                      newState[i] = false;
+                      return newState;
+                    });
                   }}
                 >
                   <div className={`${textColor}`}>
                     <h1
-                      className={`lg:text-2xl text-xl font-semibold text-center`}
+                      className={`${
+                        colorCount > 7 ? "lg:text-lg" : "lg:text-2xl"
+                      } text-xl font-semibold text-center`}
                     >
                       {colorSpace === "RGB"
                         ? rgbString.toUpperCase()
@@ -139,10 +194,15 @@ export default function Home() {
                     {toggleValue && (
                       <p className="text-center">{nearest(color).name}</p>
                     )}
-                    <center className="lg:mt-5">
+
+                    <center
+                      className={`lg:mt-5 flex flex-col items-center ${
+                        showToolsArray[i] ? "lg:opacity-100" : "lg:opacity-0"
+                      }  transition-opacity `}
+                    >
                       <div className="tooltip" data-tip={copyText}>
                         <button
-                          className="p-2 rounded-full outline-none text-2xl"
+                          className="text-2xl"
                           onClick={() => {
                             copy(color);
                             setCopyText("Copied");
@@ -154,6 +214,18 @@ export default function Home() {
                           <BiCopy />
                         </button>
                       </div>
+                      {palette.length > 2 && (
+                        <div className="tooltip" data-tip={"Remove color"}>
+                          <button
+                            className="text-2xl hidden lg:block"
+                            onClick={() => {
+                              removeColor(color);
+                            }}
+                          >
+                            <X />
+                          </button>
+                        </div>
+                      )}
                     </center>
                   </div>
                 </div>
