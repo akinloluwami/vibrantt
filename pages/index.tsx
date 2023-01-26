@@ -18,6 +18,7 @@ import useToggleStore from "@/stores/useToggleStore";
 import useLuminosityStore from "@/stores/useLuminosityStore";
 import Button from "@/component-elements/Button";
 import { ChevronLeft, ChevronRight, Plus, Settings2, X } from "lucide-react";
+import { useRouter } from "next/router";
 
 export default function Home() {
   const [palette, setPalette] = useState<string[]>([]);
@@ -39,13 +40,9 @@ export default function Home() {
   );
 
   const nearest = nearestColor.from(colors);
+  const router = useRouter();
 
   const generate = () => {
-    // let colors = newPalette;
-
-    // for (let i = 0; i < colors.length; i++) {
-    //   console.log("%c  ", `background: ${colors[i]};`);
-    // }
     const newPalette: string[] = randomColor({
       count: colorCount,
       luminosity:
@@ -59,14 +56,9 @@ export default function Home() {
           ? "random"
           : "bright",
     });
+    const newPaletteWithoutHash = newPalette.map((color) => color.substr(1));
     setPalette(newPalette);
-    setPrevPalettes(
-      produce(prevPalettes, (draft) => {
-        draft.splice(currentIndex + 1);
-        draft.push(newPalette);
-      })
-    );
-    setCurrentIndex(currentIndex + 1);
+    router.push(`/${newPaletteWithoutHash.join("-")}`);
   };
 
   const undo = () => {
