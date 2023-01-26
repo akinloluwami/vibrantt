@@ -91,6 +91,12 @@ export default function Home() {
   //#e50943 -> Cherry Velvet
   //#e5e509 -> Peridot
   // >> #56028e -> SQL Injection Purple
+
+  const removeColor = (color: string) => {
+    const updatedPalette = palette.filter((col) => col !== color);
+    setPalette(updatedPalette);
+  };
+
   return (
     <div className="w-screen overflow-x-hidden  h-screen relative">
       <DrawerContext.Provider value={{ isOpen, open, close }}>
