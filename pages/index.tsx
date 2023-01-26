@@ -164,16 +164,23 @@ export default function Home() {
             <button className="btn" onClick={generate}>
               Generate
             </button>
-            <div className="flex gap-3">
-              <Button onClick={undo} disabled={currentIndex === 1}>
-                <ChevronLeft />
-              </Button>
-              <Button
-                onClick={redo}
-                disabled={currentIndex === prevPalettes.length - 1}
-              >
-                <ChevronRight />
-              </Button>
+            <div className="flex items-center gap-2">
+              <div className="flex gap-3">
+                <Button onClick={undo} disabled={currentIndex === 1}>
+                  <ChevronLeft />
+                </Button>
+                <Button
+                  onClick={redo}
+                  disabled={currentIndex === prevPalettes.length - 1}
+                >
+                  <ChevronRight />
+                </Button>
+              </div>
+              <div className="flex items-center">
+                <Button>
+                  <Settings2 />
+                </Button>
+              </div>
             </div>
           </div>
         </>
