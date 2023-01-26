@@ -161,7 +161,12 @@ export default function Home() {
                         </button>
                       </div>
                       <div className="tooltip" data-tip={"Remove color"}>
-                        <button className="text-2xl" onClick={() => {}}>
+                        <button
+                          className="text-2xl"
+                          onClick={() => {
+                            removeColor(color);
+                          }}
+                        >
                           <X />
                         </button>
                       </div>
