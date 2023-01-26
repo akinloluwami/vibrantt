@@ -139,10 +139,10 @@ export default function Home() {
                     {toggleValue && (
                       <p className="text-center">{nearest(color).name}</p>
                     )}
-                    <center className="lg:mt-5">
+                    <center className="lg:mt-5 flex flex-col items-center">
                       <div className="tooltip" data-tip={copyText}>
                         <button
-                          className="p-2 rounded-full outline-none text-2xl"
+                          className="text-2xl"
                           onClick={() => {
                             copy(color);
                             setCopyText("Copied");
@@ -155,10 +155,7 @@ export default function Home() {
                         </button>
                       </div>
                       <div className="tooltip" data-tip={"Remove color"}>
-                        <button
-                          className="p-2 rounded-full outline-none text-2xl"
-                          onClick={() => {}}
-                        >
+                        <button className="text-2xl" onClick={() => {}}>
                           <X />
                         </button>
                       </div>
