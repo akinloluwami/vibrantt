@@ -44,7 +44,7 @@ export default function Home() {
     //   console.log("%c  ", `background: ${colors[i]};`);
     // }
     const newPalette: string[] = randomColor({
-      count: 5,
+      count: 2,
       luminosity:
         luminosity === "Default"
           ? "bright"
@@ -121,7 +121,7 @@ export default function Home() {
               return (
                 <div
                   key={i}
-                  className={`lg:h-full h-[20%] lg:flex-1  w-full flex items-center justify-center`}
+                  className={`lg:h-full h-[20%] flex-1  w-full flex items-center justify-center`}
                   style={{
                     backgroundColor: color,
                   }}
