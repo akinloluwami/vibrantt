@@ -87,6 +87,8 @@ export default function Home() {
   });
   const { isOpen, open, close } = useDrawerStore();
   //#e50943 -> Cherry Velvet
+  //#e5e509 -> Peridot
+  // >> #56028e -> SQL Injection Purple
   return (
     <div className="w-screen overflow-x-hidden  h-screen relative">
       <DrawerContext.Provider value={{ isOpen, open, close }}>
