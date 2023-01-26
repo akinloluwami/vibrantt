@@ -104,14 +104,26 @@ export default function Home() {
 
   const addNewColor = () => {
     setColorCount(colorCount + 1);
-    const newColor = randomColor({ count: 1 });
+    const newColor = randomColor({
+      count: 1,
+      luminosity:
+        luminosity === "Default"
+          ? "bright"
+          : luminosity === "Dark"
+          ? "dark"
+          : luminosity === "Light"
+          ? "light"
+          : luminosity === "Random"
+          ? "random"
+          : "bright",
+    });
     setPalette([...palette, newColor[0]]);
   };
 
   return (
     <div className="w-screen overflow-x-hidden  h-screen relative">
       <button
-        className={`h-12 w-12 bg-slate-900 shadow-sm flex items-center justify-center rounded-full absolute bottom-7 lg:right-5 ${
+        className={`hidden h-12 w-12 bg-slate-900 shadow-sm lg:flex items-center justify-center rounded-full absolute bottom-7 lg:right-5 ${
           colorCount === 10 && "opacity-0 pointer-events-none"
         } transition-opacity`}
         disabled={colorCount === 10}
