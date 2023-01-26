@@ -18,7 +18,7 @@ import hexToHsl from "@/utils/hexToHsl";
 import useToggleStore from "@/stores/useToggleStore";
 import useLuminosityStore from "@/stores/useLuminosityStore";
 import Button from "@/component-elements/Button";
-import { ChevronLeft, ChevronRight, Settings2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Settings2, X } from "lucide-react";
 
 export default function Home() {
   const [palette, setPalette] = useState<string[]>([]);
@@ -152,6 +152,14 @@ export default function Home() {
                           }}
                         >
                           <BiCopy />
+                        </button>
+                      </div>
+                      <div className="tooltip" data-tip={"Remove color"}>
+                        <button
+                          className="p-2 rounded-full outline-none text-2xl"
+                          onClick={() => {}}
+                        >
+                          <X />
                         </button>
                       </div>
                     </center>
