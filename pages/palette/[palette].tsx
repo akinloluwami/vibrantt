@@ -29,7 +29,6 @@ export default function Palette() {
   const { colorSpace } = useColorSpaceStore();
   const { toggleValue } = useToggleStore();
   const { luminosity } = useLuminosityStore();
-  // const [showTools, setShowTools] = useState(Array(colorCount).fill(false));
   const [showToolsArray, setShowToolsArray] = useState(
     Array(colorCount).fill(false)
   );
