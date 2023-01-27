@@ -58,7 +58,7 @@ export default function Home() {
     });
     const newPaletteWithoutHash = newPalette.map((color) => color.substr(1));
     setPalette(newPalette);
-    router.push(`/${newPaletteWithoutHash.join("-")}`);
+    router.push(`/palette/${newPaletteWithoutHash.join("-")}`);
   };
 
   const undo = () => {
