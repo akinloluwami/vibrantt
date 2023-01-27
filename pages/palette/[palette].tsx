@@ -77,19 +77,20 @@ export default function Palette() {
   };
 
   useEffect(() => {
-    const urlPalette: string = router.query?.palette as string;
-    const pA = urlPalette?.split("-");
-    const newPA = pA?.map((color) => "#" + color);
-    console.log(urlPalette);
+    generate();
+    // const urlPalette: string = router.query?.palette as string;
+    // const pA = urlPalette?.split("-");
+    // const newPA = pA?.map((color) => "#" + color);
+    // console.log(urlPalette);
 
-    if (urlPalette && newPA) {
-      setPalette(newPA);
-    } else {
-      {
-        !router.query?.palette && generate();
-      }
-    }
-  }, [router]);
+    // if (urlPalette && newPA) {
+    //   setPalette(newPA);
+    // } else {
+    //   {
+    //     !router.query?.palette && generate();
+    //   }
+    // }
+  }, []);
 
   useKeypress(" ", () => {
     generate();
