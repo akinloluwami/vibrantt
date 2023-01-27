@@ -1,7 +1,26 @@
-import React from "react";
+import randomColor from "randomcolor";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
-const index = () => {
-  return <div>index</div>;
-};
+export default function Home() {
+  const router = useRouter();
 
-export default index;
+  const generate = () => {
+    const newPalette: string[] = randomColor({
+      count: 5,
+    });
+    const newPaletteWithoutHash = newPalette.map((color) => color.substr(1));
+
+    router.push(`/${newPaletteWithoutHash.join("-")}`);
+  };
+
+  useEffect(() => {
+    generate();
+  }, []);
+
+  //#e50943 -> Cherry Velvet
+  //#e5e509 -> Peridot
+  // >> #56028e -> SQL Injection Purple
+
+  return <>Loading...</>;
+}
