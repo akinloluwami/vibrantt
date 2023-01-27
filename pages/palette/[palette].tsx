@@ -20,7 +20,7 @@ import Button from "@/component-elements/Button";
 import { ChevronLeft, ChevronRight, Plus, Settings2, X } from "lucide-react";
 import { useRouter } from "next/router";
 
-export default function Home() {
+export default function Palette() {
   const [palette, setPalette] = useState<string[]>([]);
   const [copyText, setCopyText] = useState<string>("Copy");
   const [prevPalettes, setPrevPalettes] = useState<string[][]>([[]]);
@@ -29,7 +29,6 @@ export default function Home() {
   const { colorSpace } = useColorSpaceStore();
   const { toggleValue } = useToggleStore();
   const { luminosity } = useLuminosityStore();
-  const [generated, setGenerated] = useState(false);
   // const [showTools, setShowTools] = useState(Array(colorCount).fill(false));
   const [showToolsArray, setShowToolsArray] = useState(
     Array(colorCount).fill(false)
@@ -44,6 +43,7 @@ export default function Home() {
   const router = useRouter();
 
   const generate = () => {
+    // console.log(router.query?.palette);
     const newPalette: string[] = randomColor({
       count: colorCount,
       luminosity:
@@ -59,6 +59,7 @@ export default function Home() {
     });
     const newPaletteWithoutHash = newPalette.map((color) => color.substr(1));
     setPalette(newPalette);
+    router.push(`/palette/${newPaletteWithoutHash.join("-")}`);
   };
 
   const undo = () => {
@@ -79,15 +80,16 @@ export default function Home() {
     const urlPalette: string = router.query?.palette as string;
     const pA = urlPalette?.split("-");
     const newPA = pA?.map((color) => "#" + color);
+    console.log(urlPalette);
 
     if (urlPalette && newPA) {
       setPalette(newPA);
-      setGenerated(false);
-    } else if (!generated) {
-      generate();
-      setGenerated(true);
+    } else {
+      {
+        !router.query?.palette && generate();
+      }
     }
-  }, [router, generated]);
+  }, [router]);
 
   useKeypress(" ", () => {
     generate();
