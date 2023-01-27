@@ -39,11 +39,9 @@ export default function Home() {
     {}
   );
 
-  const nearest = nearestColor.from(colors);
   const router = useRouter();
 
   const generate = () => {
-    // console.log(router.query?.palette);
     const newPalette: string[] = randomColor({
       count: colorCount,
       luminosity:
@@ -62,20 +60,6 @@ export default function Home() {
     router.push(`/palette/${newPaletteWithoutHash.join("-")}`);
   };
 
-  const undo = () => {
-    if (currentIndex > 0 && currentIndex > 1) {
-      setCurrentIndex(currentIndex - 1);
-      setPalette(prevPalettes[currentIndex - 1]);
-    }
-  };
-
-  const redo = () => {
-    if (currentIndex < prevPalettes.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-      setPalette(prevPalettes[currentIndex + 1]);
-    }
-  };
-
   useEffect(() => {
     const urlPalette: string = router.query?.palette as string;
     const pA = urlPalette?.split("-");
@@ -91,37 +75,9 @@ export default function Home() {
     }
   }, [router]);
 
-  useKeypress(" ", () => {
-    generate();
-  });
-  const { isOpen, open, close } = useDrawerStore();
   //#e50943 -> Cherry Velvet
   //#e5e509 -> Peridot
   // >> #56028e -> SQL Injection Purple
-
-  const removeColor = (color: string) => {
-    const updatedPalette = palette.filter((col) => col !== color);
-    setPalette(updatedPalette);
-    setColorCount(updatedPalette.length);
-  };
-
-  const addNewColor = () => {
-    setColorCount(colorCount + 1);
-    const newColor = randomColor({
-      count: 1,
-      luminosity:
-        luminosity === "Default"
-          ? "bright"
-          : luminosity === "Dark"
-          ? "dark"
-          : luminosity === "Light"
-          ? "light"
-          : luminosity === "Random"
-          ? "random"
-          : "bright",
-    });
-    setPalette([...palette, newColor[0]]);
-  };
 
   return <>Loading...</>;
 }
