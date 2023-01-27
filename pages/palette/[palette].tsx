@@ -43,6 +43,11 @@ export default function Home() {
   const router = useRouter();
 
   const generate = () => {
+    // console.log(router.query?.palette);
+    const urlPalette: string = router.query?.palette as string;
+
+    console.log(urlPalette.split("-"));
+
     const newPalette: string[] = randomColor({
       count: colorCount,
       luminosity:
