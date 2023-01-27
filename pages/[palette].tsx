@@ -57,7 +57,7 @@ export default function Palette() {
     });
     const newPaletteWithoutHash = newPalette.map((color) => color.substr(1));
     setPalette(newPalette);
-    router.push(`/palette/${newPaletteWithoutHash.join("-")}`);
+    router.push(`/${newPaletteWithoutHash.join("-")}`);
     setPrevPalettes(
       produce(prevPalettes, (draft) => {
         draft.splice(currentIndex + 1);
