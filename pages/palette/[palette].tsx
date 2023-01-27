@@ -42,7 +42,6 @@ export default function Palette() {
   const router = useRouter();
 
   const generate = () => {
-    // console.log(router.query?.palette);
     const newPalette: string[] = randomColor({
       count: colorCount,
       luminosity:
@@ -59,6 +58,13 @@ export default function Palette() {
     const newPaletteWithoutHash = newPalette.map((color) => color.substr(1));
     setPalette(newPalette);
     router.push(`/palette/${newPaletteWithoutHash.join("-")}`);
+    setPrevPalettes(
+      produce(prevPalettes, (draft) => {
+        draft.splice(currentIndex + 1);
+        draft.push(newPalette);
+      })
+    );
+    setCurrentIndex(currentIndex + 1);
   };
 
   const undo = () => {
@@ -76,20 +82,25 @@ export default function Palette() {
   };
 
   useEffect(() => {
-    generate();
-    // const urlPalette: string = router.query?.palette as string;
-    // const pA = urlPalette?.split("-");
-    // const newPA = pA?.map((color) => "#" + color);
-    // console.log(urlPalette);
+    const urlPalette: string = router.query?.palette as string;
+    const pA = urlPalette?.split("-");
+    const newPA = pA?.map((color) => "#" + color);
+    console.log(urlPalette);
 
-    // if (urlPalette && newPA) {
-    //   setPalette(newPA);
-    // } else {
-    //   {
-    //     !router.query?.palette && generate();
-    //   }
-    // }
-  }, []);
+    if (!urlPalette || urlPalette === ("" || undefined || null)) {
+      // generate();
+      console.log("data");
+    } else {
+      setPalette(newPA);
+      setPrevPalettes(
+        produce(prevPalettes, (draft) => {
+          draft.splice(currentIndex + 1);
+          draft.push(newPA);
+        })
+      );
+      setCurrentIndex(currentIndex + 1);
+    }
+  }, [router]);
 
   useKeypress(" ", () => {
     generate();
