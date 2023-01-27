@@ -88,7 +88,6 @@ export default function Palette() {
     const newPA = pA?.map((color) => "#" + color);
     if (!urlPalette || urlPalette === ("" || undefined || null)) {
     } else {
-      // Check if all colors are valid hex codes
       if (newPA.every((color) => isColor(color))) {
         setPalette(newPA);
         setPrevPalettes(
@@ -99,7 +98,6 @@ export default function Palette() {
         );
         setCurrentIndex(currentIndex + 1);
       } else {
-        // Redirect to 404 page
         router.push("/404");
       }
     }
