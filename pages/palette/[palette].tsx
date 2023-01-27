@@ -29,6 +29,7 @@ export default function Home() {
   const { colorSpace } = useColorSpaceStore();
   const { toggleValue } = useToggleStore();
   const { luminosity } = useLuminosityStore();
+  const [generated, setGenerated] = useState(false);
   // const [showTools, setShowTools] = useState(Array(colorCount).fill(false));
   const [showToolsArray, setShowToolsArray] = useState(
     Array(colorCount).fill(false)
@@ -43,11 +44,6 @@ export default function Home() {
   const router = useRouter();
 
   const generate = () => {
-    // console.log(router.query?.palette);
-    const urlPalette: string = router.query?.palette as string;
-
-    console.log(urlPalette.split("-"));
-
     const newPalette: string[] = randomColor({
       count: colorCount,
       luminosity:
@@ -63,7 +59,6 @@ export default function Home() {
     });
     const newPaletteWithoutHash = newPalette.map((color) => color.substr(1));
     setPalette(newPalette);
-    router.push(`/palette/${newPaletteWithoutHash.join("-")}`);
   };
 
   const undo = () => {
@@ -81,8 +76,18 @@ export default function Home() {
   };
 
   useEffect(() => {
-    generate();
-  }, []);
+    const urlPalette: string = router.query?.palette as string;
+    const pA = urlPalette?.split("-");
+    const newPA = pA?.map((color) => "#" + color);
+
+    if (urlPalette && newPA) {
+      setPalette(newPA);
+      setGenerated(false);
+    } else if (!generated) {
+      generate();
+      setGenerated(true);
+    }
+  }, [router, generated]);
 
   useKeypress(" ", () => {
     generate();
