@@ -87,17 +87,22 @@ export default function Palette() {
     const newPA = pA?.map((color) => "#" + color);
     if (!urlPalette || urlPalette === ("" || undefined || null)) {
     } else {
-      setPalette(newPA);
-      setPrevPalettes(
-        produce(prevPalettes, (draft) => {
-          draft.splice(currentIndex + 1);
-          draft.push(newPA);
-        })
-      );
-      setCurrentIndex(currentIndex + 1);
+      // Check if all colors are valid hex codes
+      if (newPA.every((color) => isColor(color))) {
+        setPalette(newPA);
+        setPrevPalettes(
+          produce(prevPalettes, (draft) => {
+            draft.splice(currentIndex + 1);
+            draft.push(newPA);
+          })
+        );
+        setCurrentIndex(currentIndex + 1);
+      } else {
+        // Redirect to 404 page
+        router.push("/404");
+      }
     }
   }, [router]);
-
   useKeypress(" ", () => {
     generate();
   });
