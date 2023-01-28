@@ -70,17 +70,11 @@ export default function Palette() {
   };
 
   const undo = () => {
-    if (currentIndex > 0 && currentIndex > 1) {
-      setCurrentIndex(currentIndex - 1);
-      setPalette(prevPalettes[currentIndex - 1]);
-    }
+    router.back();
   };
 
   const redo = () => {
-    if (currentIndex < prevPalettes.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-      setPalette(prevPalettes[currentIndex + 1]);
-    }
+    router.forward();
   };
 
   useKeypress(" ", () => {
