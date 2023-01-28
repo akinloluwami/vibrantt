@@ -33,6 +33,7 @@ export default function Palette() {
   const [showToolsArray, setShowToolsArray] = useState(
     Array(colorCount).fill(false)
   );
+  const [generated, setGenerated] = useState(0);
 
   const colors = colorNameList.reduce(
     (o, { name, hex }) => Object.assign(o, { [name]: hex }),
@@ -70,12 +71,11 @@ export default function Palette() {
   };
 
   const undo = () => {
+    setGenerated(generated - 1);
     router.back();
   };
 
-  const redo = () => {
-    router.forward();
-  };
+  const redo = () => {};
 
   useKeypress(" ", () => {
     generate();
@@ -128,6 +128,7 @@ export default function Palette() {
             draft.push(newPA);
           })
         );
+        setGenerated(generated + 1);
         setCurrentIndex(currentIndex + 1);
       } else {
         router.push("/404");
@@ -152,6 +153,7 @@ export default function Palette() {
           <Header
             undo={undo}
             currentIndex={currentIndex}
+            generated={generated}
             redo={redo}
             prevPalettes={prevPalettes}
           />
@@ -253,7 +255,7 @@ export default function Palette() {
             </button>
             <div className="flex items-center gap-2">
               <div className="flex gap-3">
-                <Button onClick={undo} disabled={currentIndex === 1}>
+                <Button onClick={undo} disabled={generated < 2}>
                   <ChevronLeft />
                 </Button>
                 <Button
