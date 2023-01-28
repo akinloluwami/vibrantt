@@ -116,7 +116,10 @@ export default function Palette() {
           ? "random"
           : "bright",
     });
-    setPalette([...palette, newColor[0]]);
+    const newPalette = [...palette, newColor[0]];
+    setPalette(newPalette);
+    const newPaletteWithoutHash = newPalette.map((color) => color.substr(1));
+    router.push(`/${newPaletteWithoutHash.join("-")}`);
   };
 
   // useEffect(() => {
@@ -145,6 +148,8 @@ export default function Palette() {
       }
     }
   }, [router]);
+
+  //Todo -> Update URL on color add, undo and redo
 
   return (
     <div className="w-screen overflow-x-hidden  h-screen relative">
