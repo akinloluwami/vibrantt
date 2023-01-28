@@ -56,8 +56,9 @@ export default function Palette() {
           ? "random"
           : "bright",
     });
-    const newPaletteWithoutHash = newPalette.map((color) => color.substr(1));
     setPalette(newPalette);
+
+    const newPaletteWithoutHash = newPalette.map((color) => color.substr(1));
     router.push(`/${newPaletteWithoutHash.join("-")}`);
     setPrevPalettes(
       produce(prevPalettes, (draft) => {
@@ -115,6 +116,10 @@ export default function Palette() {
     const updatedPalette = palette.filter((col) => col !== color);
     setPalette(updatedPalette);
     setColorCount(updatedPalette.length);
+    const newPaletteWithoutHash = updatedPalette.map((color) =>
+      color.substr(1)
+    );
+    router.push(`/${newPaletteWithoutHash.join("-")}`);
   };
 
   const addNewColor = () => {
@@ -134,6 +139,11 @@ export default function Palette() {
     });
     setPalette([...palette, newColor[0]]);
   };
+
+  // useEffect(() => {
+  //   const newPaletteWithoutHash = palette.map((color) => color.substr(1));
+  //   router.push(`/${newPaletteWithoutHash.join("-")}`);
+  // }, [palette, router]);
 
   return (
     <div className="w-screen overflow-x-hidden  h-screen relative">
