@@ -31,13 +31,10 @@ const Header = ({ undo, currentIndex, redo, prevPalettes }: any) => {
 
       <div className="lg:flex items-center gap-7 hidden lg:visible">
         <div className="flex items-center">
-          <Button onClick={undo} disabled={currentIndex === 1}>
+          <Button onClick={undo}>
             <ChevronLeft size={iconSize} />
           </Button>
-          <Button
-            onClick={redo}
-            disabled={currentIndex === prevPalettes.length - 1}
-          >
+          <Button onClick={redo}>
             <ChevronRight size={iconSize} />
           </Button>
         </div>
