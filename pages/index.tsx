@@ -21,7 +21,7 @@ export default function Home() {
   //#e50943 -> Cherry Velvet
   //#e5e509 -> Peridot
   // >> #56028e -> SQL Injection Purple
-
+  // #cc9228 -> Vibrant Amber
   return (
     <div className="h-screen flex items-center justify-center flex-col">
       <img
