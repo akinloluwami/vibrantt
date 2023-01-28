@@ -87,9 +87,6 @@ export default function Palette() {
     generate();
   });
   const { isOpen, open, close } = useDrawerStore();
-  //#e50943 -> Cherry Velvet
-  //#e5e509 -> Peridot
-  // >> #56028e -> SQL Injection Purple
 
   const removeColor = (color: string) => {
     const updatedPalette = palette.filter((col) => col !== color);
@@ -122,11 +119,6 @@ export default function Palette() {
     router.push(`/${newPaletteWithoutHash.join("-")}`);
   };
 
-  // useEffect(() => {
-  //   const newPaletteWithoutHash = palette.map((color) => color.substr(1));
-  //   router.push(`/${newPaletteWithoutHash.join("-")}`);
-  // }, [palette, router]);
-
   useEffect(() => {
     const urlPalette: string = router.query?.palette as string;
     const pA = urlPalette?.split("-");
@@ -148,8 +140,6 @@ export default function Palette() {
       }
     }
   }, [router]);
-
-  //Todo -> Update URL on color add, undo and redo
 
   return (
     <div className="w-screen overflow-x-hidden  h-screen relative">
