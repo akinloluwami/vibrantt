@@ -90,6 +90,7 @@ export default function Palette() {
     } else {
       if (newPA.every((color) => isColor(color))) {
         setPalette(newPA);
+        setColorCount(newPA.length);
         setPrevPalettes(
           produce(prevPalettes, (draft) => {
             draft.splice(currentIndex + 1);
