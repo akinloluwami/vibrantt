@@ -22,5 +22,14 @@ export default function Home() {
   //#e5e509 -> Peridot
   // >> #56028e -> SQL Injection Purple
 
-  return <>Loading...</>;
+  return (
+    <div className="h-screen flex items-center justify-center flex-col">
+      <img
+        src="https://res.cloudinary.com/xing0x/image/upload/v1674131508/VIBRANT_icon_nrwiko.png"
+        alt="Vibrantt logo"
+        className="animate-bounce w-32"
+      />
+      <h1>Our robots are generating colors...</h1>
+    </div>
+  );
 }
