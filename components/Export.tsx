@@ -103,7 +103,14 @@ const Export = ({ paletteCode }: ExportProps) => {
               </div>
             </div>
           )}
-          {copyOption === "Code" && <div className="">Copy as code</div>}
+          {copyOption === "Code" && (
+            <div className="">
+              <textarea
+                value={paletteCode}
+                className="bg-transparent w-full rounded-md mt-4"
+              />{" "}
+            </div>
+          )}
         </div>
       </div>
     </div>
