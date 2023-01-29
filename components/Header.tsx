@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SiTwitter } from "react-icons/si";
-import { ChevronLeft, ChevronRight, Settings2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, Settings2, Share2 } from "lucide-react";
 import Button from "@/component-elements/Button";
 import { useContext } from "react";
 import { DrawerContext } from "@/stores/useDrawerStore";
@@ -30,6 +30,11 @@ const Header = ({ undo, redo, undoStack, redoStack }: any) => {
       </Link>
 
       <div className="lg:flex items-center gap-7 hidden lg:visible">
+        <div className="">
+          <Button>
+            <Share2 size={iconSize} />
+          </Button>
+        </div>
         <div className="flex items-center">
           <Button
             onClick={undo}
