@@ -20,7 +20,7 @@ import Button from "@/component-elements/Button";
 import { ChevronLeft, ChevronRight, Plus, Settings2, X } from "lucide-react";
 import { useRouter } from "next/router";
 import isColor from "is-color";
-import Export from "@/components/Export";
+import { useRef } from "react";
 
 export default function Palette() {
   const [palette, setPalette] = useState<string[]>([]);
@@ -36,6 +36,7 @@ export default function Palette() {
   const [showToolsArray, setShowToolsArray] = useState(
     Array(colorCount).fill(false)
   );
+  const copyBtnRef: any = useRef(null);
 
   const colors = colorNameList.reduce(
     (o, { name, hex }) => Object.assign(o, { [name]: hex }),
@@ -239,7 +240,7 @@ export default function Palette() {
                       }  transition-opacity `}
                     >
                       <div className="tooltip" data-tip={copyText}>
-                        <button
+                        <Button
                           className="text-2xl"
                           onClick={() => {
                             copy(color);
@@ -250,18 +251,18 @@ export default function Palette() {
                           }}
                         >
                           <BiCopy />
-                        </button>
+                        </Button>
                       </div>
                       {palette.length > 2 && (
                         <div className="tooltip" data-tip={"Remove color"}>
-                          <button
+                          <Button
                             className="text-2xl hidden lg:block"
                             onClick={() => {
                               removeColor(color);
                             }}
                           >
                             <X />
-                          </button>
+                          </Button>
                         </div>
                       )}
                     </center>

@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useRef } from "react";
 
 const Button = ({ children, onClick, disabled }: any) => {
+  const btnRef: any = useRef(null);
+
   return (
     <button
-      className="btn-state hover:bg-slate-700 bg-transparent transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-default mx-1 p-1 rounded-full text-lg outline-none border-none"
+      className="hover:bg-slate-700 bg-transparent transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-default mx-1 p-1 rounded-full text-lg border-none"
+      ref={btnRef}
       onClick={() => {
         onClick();
-        const btnn: any = document.querySelector(".btn-state");
-        btnn.blur();
+        btnRef.current.blur();
       }}
       disabled={disabled}
     >
