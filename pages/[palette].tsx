@@ -20,7 +20,6 @@ import Button from "@/component-elements/Button";
 import { ChevronLeft, ChevronRight, Plus, Settings2, X } from "lucide-react";
 import { useRouter } from "next/router";
 import isColor from "is-color";
-import Export from "@/components/Export";
 
 export default function Palette() {
   const [palette, setPalette] = useState<string[]>([]);
@@ -241,8 +240,10 @@ export default function Palette() {
                       <div className="tooltip" data-tip={copyText}>
                         <button
                           className="text-2xl"
+                          id={"copy-btn"}
                           onClick={() => {
                             copy(color);
+                            document.getElementById("copy-btn")?.blur();
                             setCopyText("Copied");
                             setTimeout(() => {
                               setCopyText("Copy");
