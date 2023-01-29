@@ -26,6 +26,8 @@ export default function Palette() {
   const [copyText, setCopyText] = useState<string>("Copy");
   const [prevPalettes, setPrevPalettes] = useState<string[][]>([[]]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [undoStack, setUndoStack] = useState<string[][]>([]);
+  const [redoStack, setRedoStack] = useState<string[][]>([]);
   const [colorCount, setColorCount] = useState<number>(5);
   const { colorSpace } = useColorSpaceStore();
   const { toggleValue } = useToggleStore();
@@ -57,30 +59,26 @@ export default function Palette() {
           : "bright",
     });
     setPalette(newPalette);
+    setUndoStack([...undoStack, [...palette]]);
+    setPalette(newPalette);
+    setRedoStack([]);
 
     const newPaletteWithoutHash = newPalette.map((color) => color.substr(1));
     router.replace(`/${newPaletteWithoutHash.join("-")}`);
-    setPrevPalettes(
-      produce(prevPalettes, (draft) => {
-        draft.splice(currentIndex + 1);
-        draft.push(newPalette);
-      })
-    );
-    setCurrentIndex(currentIndex + 1);
   };
 
   const undo = () => {
-    if (currentIndex > 0 && currentIndex > 1) {
-      setCurrentIndex(currentIndex - 1);
-      setPalette(prevPalettes[currentIndex - 1]);
-    }
+    if (undoStack.length === 0) return;
+    const previousState: any = undoStack.pop();
+    setRedoStack([...redoStack, [...palette]]);
+    setPalette(previousState);
   };
 
   const redo = () => {
-    if (currentIndex < prevPalettes.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-      setPalette(prevPalettes[currentIndex + 1]);
-    }
+    if (redoStack.length === 0) return;
+    const nextState: any = redoStack.pop();
+    setUndoStack([...undoStack, [...palette]]);
+    setPalette(nextState);
   };
 
   useEffect(() => {
