@@ -155,6 +155,9 @@ export default function Palette() {
 
     const paletteCode = `
     /* Generated with ❤ by Vibrantt - https://vibrantt.co/${urlPalette} */
+
+    /* CSV */
+    ${urlPalette.replaceAll("-", ",")}
     `;
     setPaletteCode(paletteCode);
   }, [router]);
