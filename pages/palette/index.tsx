@@ -11,7 +11,7 @@ export default function Home() {
     });
     const newPaletteWithoutHash = newPalette.map((color) => color.substr(1));
 
-    router.push(`/${newPaletteWithoutHash.join("-")}`);
+    router.replace(`/${newPaletteWithoutHash.join("-")}`);
   };
 
   useEffect(() => {
