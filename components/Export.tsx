@@ -15,7 +15,7 @@ const Export = () => {
         <div className="modal-box py-3">
           <div className="flex items-center justify-between">
             <h3 className="font-bold text-lg">Export palette</h3>
-            <label htmlFor="my-modal" className="">
+            <label htmlFor="my-modal" className="cursor-pointer">
               <X />
             </label>
           </div>
