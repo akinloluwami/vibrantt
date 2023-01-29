@@ -20,7 +20,6 @@ import Button from "@/component-elements/Button";
 import { ChevronLeft, ChevronRight, Plus, Settings2, X } from "lucide-react";
 import { useRouter } from "next/router";
 import isColor from "is-color";
-import { useRef } from "react";
 
 export default function Palette() {
   const [palette, setPalette] = useState<string[]>([]);
