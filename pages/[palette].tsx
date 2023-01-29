@@ -155,6 +155,8 @@ export default function Palette() {
     }
   }, [router]);
 
+  const [paletteCode, setPaletteCode] = useState("Codeeeee");
+
   return (
     <div className="w-screen overflow-x-hidden  h-screen relative">
       <button
@@ -178,6 +180,7 @@ export default function Palette() {
             redo={redo}
             undoStack={undoStack}
             redoStack={redoStack}
+            paletteCode={paletteCode}
           />
         </div>
       </DrawerContext.Provider>
