@@ -104,7 +104,7 @@ const Export = ({ paletteCode }: ExportProps) => {
             <div className="">
               <textarea
                 value={paletteCode}
-                className="bg-transparent w-full rounded-md mt-4"
+                className="bg-transparent w-full rounded-md mt-4 h-52"
               />{" "}
               <div className="flex items-center gap-2 mt-4">
                 <button className="btn">Download</button>
