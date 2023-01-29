@@ -1,6 +1,7 @@
 import randomColor from "randomcolor";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { Typewriter } from "react-simple-typewriter";
 
 export default function Home() {
   const router = useRouter();
@@ -25,7 +26,25 @@ export default function Home() {
         alt="Vibrantt logo"
         className="animate-bounce w-32"
       />
-      <h1>Our robots are generating colors...</h1>
+      <h1>
+        <Typewriter
+          words={[
+            "Our robots are generating colors",
+            "#FF0000",
+            "#00FF00",
+            "#0000FF",
+            "Hang tight!",
+            "Almost there!",
+            "Hmmm...this is taking longer than usual...",
+          ]}
+          loop={5}
+          cursor
+          cursorStyle="_"
+          typeSpeed={30}
+          deleteSpeed={15}
+          delaySpeed={1000}
+        />
+      </h1>
     </div>
   );
 }
