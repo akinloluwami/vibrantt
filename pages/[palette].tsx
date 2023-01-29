@@ -36,6 +36,7 @@ export default function Palette() {
   const [showToolsArray, setShowToolsArray] = useState(
     Array(colorCount).fill(false)
   );
+  const copyBtnRef: any = useRef(null);
 
   const colors = colorNameList.reduce(
     (o, { name, hex }) => Object.assign(o, { [name]: hex }),
@@ -239,12 +240,10 @@ export default function Palette() {
                       }  transition-opacity `}
                     >
                       <div className="tooltip" data-tip={copyText}>
-                        <button
+                        <Button
                           className="text-2xl"
-                          id={"copy-btn"}
                           onClick={() => {
                             copy(color);
-                            document.getElementById("copy-btn")?.blur();
                             setCopyText("Copied");
                             setTimeout(() => {
                               setCopyText("Copy");
@@ -252,7 +251,7 @@ export default function Palette() {
                           }}
                         >
                           <BiCopy />
-                        </button>
+                        </Button>
                       </div>
                       {palette.length > 2 && (
                         <div className="tooltip" data-tip={"Remove color"}>
