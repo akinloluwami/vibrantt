@@ -5,7 +5,7 @@ import Button from "@/component-elements/Button";
 import { useContext } from "react";
 import { DrawerContext } from "@/stores/useDrawerStore";
 
-const Header = ({ undo, currentIndex, redo, prevPalettes }: any) => {
+const Header = ({ undo, redo, undoStack, redoStack }: any) => {
   const iconSize = 20;
   const { open } = useContext(DrawerContext);
   return (
@@ -31,12 +31,15 @@ const Header = ({ undo, currentIndex, redo, prevPalettes }: any) => {
 
       <div className="lg:flex items-center gap-7 hidden lg:visible">
         <div className="flex items-center">
-          <Button onClick={undo}>
+          <Button
+            onClick={undo}
+            disabled={undoStack.length === 0 ? true : false}
+          >
             <ChevronLeft size={iconSize} />
           </Button>
           <Button
             onClick={redo}
-            // disabled={currentIndex === prevPalettes.length - 1}
+            disabled={redoStack.length === 0 ? true : false}
           >
             <ChevronRight size={iconSize} />
           </Button>
