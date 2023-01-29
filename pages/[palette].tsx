@@ -275,12 +275,15 @@ export default function Palette() {
             </button>
             <div className="flex items-center gap-2">
               <div className="flex gap-3">
-                <Button onClick={undo} disabled={currentIndex === 1}>
+                <Button
+                  onClick={undo}
+                  disabled={undoStack.length === 0 ? true : false}
+                >
                   <ChevronLeft />
                 </Button>
                 <Button
                   onClick={redo}
-                  disabled={currentIndex === prevPalettes.length - 1}
+                  disabled={redoStack.length === 0 ? true : false}
                 >
                   <ChevronRight />
                 </Button>
