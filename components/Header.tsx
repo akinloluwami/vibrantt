@@ -36,7 +36,7 @@ const Header = ({ undo, currentIndex, redo, prevPalettes }: any) => {
           </Button>
           <Button
             onClick={redo}
-            disabled={currentIndex === prevPalettes.length - 1}
+            // disabled={currentIndex === prevPalettes.length - 1}
           >
             <ChevronRight size={iconSize} />
           </Button>
