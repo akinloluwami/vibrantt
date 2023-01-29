@@ -11,7 +11,12 @@ import {
 } from "lucide-react";
 import copy from "copy-to-clipboard";
 import Button from "@/component-elements/Button";
-const Export = () => {
+
+interface ExportProps {
+  paletteCode: string;
+}
+
+const Export = ({ paletteCode }: ExportProps) => {
   const [copyText, setCopyText] = useState<string>("Copy URL");
   const [copyOption, setCopyOption] = useState("");
 
