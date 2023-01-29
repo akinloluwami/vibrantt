@@ -152,22 +152,38 @@ export default function Palette() {
         router.push("/404");
       }
     }
-    const withHash = pA.map((color) => `#${color}`);
+    const withHash = pA?.map((color) => `#${color}`);
+    const extendedArray = pA?.map((color) => {
+      const rgb = hexToRgb(color);
+      // const hsl = hexToHsl(color);
+      const { r, g, b } = rgb;
+      // const { h, s, l } = hsl;
+      const obj = {
+        name: nearest(color).name,
+        hex: color,
+        rgb: `[${r},${g},${b}]`,
+        // hsl: `[${h},${s},${l}]`,
+      };
+      return obj;
+    });
     const paletteCode = `
     /* Generated with ❤ by Vibrantt - https://vibrantt.co/${urlPalette} */
 
     /* CSV */
-    ${urlPalette.replaceAll("-", ",")}
+    ${urlPalette?.replaceAll("-", ",")}
 
     /* With # */
     ${JSON.stringify(withHash)
-      .replaceAll(",", ", ")
-      .replace("[", "")
-      .replace("]", "")
-      .replaceAll(`"`, "")}
+      ?.replaceAll(",", ", ")
+      ?.replace("[", "")
+      ?.replace("]", "")
+      ?.replaceAll(`"`, "")}
     
     /* Array */
-    ${JSON.stringify(pA)}
+    ${JSON?.stringify(pA)}
+
+    /* Extended Array */
+    ${JSON?.stringify(extendedArray)}
       `;
     setPaletteCode(paletteCode);
   }, [router]);
