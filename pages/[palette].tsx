@@ -33,7 +33,6 @@ export default function Palette() {
   const [showToolsArray, setShowToolsArray] = useState(
     Array(colorCount).fill(false)
   );
-  const [generated, setGenerated] = useState(0);
 
   const colors = colorNameList.reduce(
     (o, { name, hex }) => Object.assign(o, { [name]: hex }),
@@ -71,16 +70,47 @@ export default function Palette() {
   };
 
   const undo = () => {
-    setGenerated(generated - 1);
-    router.back();
+    if (currentIndex > 0 && currentIndex > 1) {
+      setCurrentIndex(currentIndex - 1);
+      setPalette(prevPalettes[currentIndex - 1]);
+    }
   };
 
-  const redo = () => {};
+  const redo = () => {
+    if (currentIndex < prevPalettes.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+      setPalette(prevPalettes[currentIndex + 1]);
+    }
+  };
 
+  useEffect(() => {
+    const urlPalette: string = router.query?.palette as string;
+    const pA = urlPalette?.split("-");
+    const newPA = pA?.map((color) => "#" + color);
+    if (!urlPalette || urlPalette === ("" || undefined || null)) {
+    } else {
+      if (newPA.every((color) => isColor(color))) {
+        setPalette(newPA);
+        setColorCount(newPA.length);
+        setPrevPalettes(
+          produce(prevPalettes, (draft) => {
+            draft.splice(currentIndex + 1);
+            draft.push(newPA);
+          })
+        );
+        setCurrentIndex(currentIndex + 1);
+      } else {
+        router.push("/404");
+      }
+    }
+  }, [router]);
   useKeypress(" ", () => {
     generate();
   });
   const { isOpen, open, close } = useDrawerStore();
+  //#e50943 -> Cherry Velvet
+  //#e5e509 -> Peridot
+  // >> #56028e -> SQL Injection Purple
 
   const removeColor = (color: string) => {
     const updatedPalette = palette.filter((col) => col !== color);
@@ -107,43 +137,31 @@ export default function Palette() {
           ? "random"
           : "bright",
     });
-    const newPalette = [...palette, newColor[0]];
-    setPalette(newPalette);
-    const newPaletteWithoutHash = newPalette.map((color) => color.substr(1));
+    const updatedPalette = [...palette, newColor[0]];
+    setPalette(updatedPalette);
+    const newPaletteWithoutHash = updatedPalette.map((color) =>
+      color.substr(1)
+    );
     router.push(`/${newPaletteWithoutHash.join("-")}`);
   };
 
-  useEffect(() => {
-    const urlPalette: string = router.query?.palette as string;
-    const pA = urlPalette?.split("-");
-    const newPA = pA?.map((color) => "#" + color);
-    if (!urlPalette || urlPalette === ("" || undefined || null)) {
-    } else {
-      if (newPA.every((color) => isColor(color))) {
-        setPalette(newPA);
-        setColorCount(newPA.length);
-        setPrevPalettes(
-          produce(prevPalettes, (draft) => {
-            draft.splice(currentIndex + 1);
-            draft.push(newPA);
-          })
-        );
-        setGenerated(generated + 1);
-        setCurrentIndex(currentIndex + 1);
-      } else {
-        router.push("/404");
-      }
-    }
-  }, [router]);
+  // useEffect(() => {
+  //   const newPaletteWithoutHash = palette.map((color) => color.substr(1));
+  //   router.push(`/${newPaletteWithoutHash.join("-")}`);
+  // }, [palette, router]);
 
   return (
     <div className="w-screen overflow-x-hidden  h-screen relative">
       <button
-        className={`hidden h-12 w-12 bg-slate-900 shadow-sm lg:flex items-center justify-center rounded-full absolute bottom-7 lg:right-5 ${
+        className={`add-btn hidden h-12 w-12 bg-slate-900 shadow-sm lg:flex items-center justify-center rounded-full absolute bottom-7 lg:right-5 ${
           colorCount === 10 && "opacity-0 pointer-events-none"
         } transition-opacity`}
         disabled={colorCount === 10}
-        onClick={addNewColor}
+        onClick={() => {
+          addNewColor();
+          const btn: any = document.querySelector(".add-btn");
+          btn.blur();
+        }}
       >
         <Plus />
       </button>
@@ -153,7 +171,6 @@ export default function Palette() {
           <Header
             undo={undo}
             currentIndex={currentIndex}
-            generated={generated}
             redo={redo}
             prevPalettes={prevPalettes}
           />
@@ -255,7 +272,7 @@ export default function Palette() {
             </button>
             <div className="flex items-center gap-2">
               <div className="flex gap-3">
-                <Button onClick={undo} disabled={generated < 2}>
+                <Button onClick={undo} disabled={currentIndex === 1}>
                   <ChevronLeft />
                 </Button>
                 <Button
