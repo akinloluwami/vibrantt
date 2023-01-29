@@ -6,12 +6,10 @@ const Export = () => {
 
   return (
     <div>
-      {/* The button to open modal */}
       <label htmlFor="my-modal" className="cursor-pointer">
         <Share2 size={20} />
       </label>
 
-      {/* Put this part before </body> tag */}
       <input type="checkbox" id="my-modal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box py-3">
