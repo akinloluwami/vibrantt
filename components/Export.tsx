@@ -45,7 +45,7 @@ const Export = () => {
               </label>
             )}
             {copyOption !== "" && (
-              <Button>
+              <Button onClick={() => setCopyOption("")}>
                 <ArrowLeft />
               </Button>
             )}
