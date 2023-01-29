@@ -156,7 +156,6 @@ export default function Palette() {
 
   return (
     <div className="w-screen overflow-x-hidden  h-screen relative">
-      {/* <Export /> */}
       <button
         className={`add-btn hidden h-12 w-12 bg-slate-900 shadow-sm lg:flex items-center justify-center rounded-full absolute bottom-7 lg:right-5 ${
           colorCount === 10 && "opacity-0 pointer-events-none"
