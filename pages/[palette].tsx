@@ -160,8 +160,11 @@ export default function Palette() {
     ${urlPalette.replaceAll("-", ",")}
 
     /* With # */
-    ${withHash}
-
+    ${JSON.stringify(withHash)
+      .replaceAll(",", ", ")
+      .replace("[", "")
+      .replace("]", "")
+      .replaceAll(`"`, "")}
     `;
     setPaletteCode(paletteCode);
   }, [router]);
