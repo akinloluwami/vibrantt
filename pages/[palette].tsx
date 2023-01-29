@@ -83,6 +83,8 @@ export default function Palette() {
     const nextState: any = redoStack.pop();
     setUndoStack([...undoStack, [...palette]]);
     setPalette(nextState);
+    const newUrl = nextState.map((color: string) => color.substr(1)).join("-");
+    router.replace(`/${newUrl}`);
   };
 
   useEffect(() => {
