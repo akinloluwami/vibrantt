@@ -152,6 +152,11 @@ export default function Palette() {
         router.push("/404");
       }
     }
+
+    const paletteCode = `
+    /* Generated with ❤ by Vibrantt - https://vibrantt.co/${urlPalette} */
+    `;
+    setPaletteCode(paletteCode);
   }, [router]);
 
   return (
