@@ -152,12 +152,16 @@ export default function Palette() {
         router.push("/404");
       }
     }
-
+    const withHash = pA.map((color) => `#${color}`);
     const paletteCode = `
     /* Generated with ❤ by Vibrantt - https://vibrantt.co/${urlPalette} */
 
     /* CSV */
     ${urlPalette.replaceAll("-", ",")}
+
+    /* With # */
+    ${withHash}
+
     `;
     setPaletteCode(paletteCode);
   }, [router]);
