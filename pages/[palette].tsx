@@ -36,7 +36,7 @@ export default function Palette() {
   const [showToolsArray, setShowToolsArray] = useState(
     Array(colorCount).fill(false)
   );
-  const copyBtnRef: any = useRef(null);
+  const [paletteCode, setPaletteCode] = useState("");
 
   const colors = colorNameList.reduce(
     (o, { name, hex }) => Object.assign(o, { [name]: hex }),
@@ -154,8 +154,6 @@ export default function Palette() {
       }
     }
   }, [router]);
-
-  const [paletteCode, setPaletteCode] = useState("Codeeeee");
 
   return (
     <div className="w-screen overflow-x-hidden  h-screen relative">
