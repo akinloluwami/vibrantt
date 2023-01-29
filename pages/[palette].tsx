@@ -60,7 +60,6 @@ export default function Palette() {
     });
     setPalette(newPalette);
     setUndoStack([...undoStack, [...palette]]);
-    setPalette(newPalette);
     setRedoStack([]);
 
     const newPaletteWithoutHash = newPalette.map((color) => color.substr(1));
@@ -87,27 +86,6 @@ export default function Palette() {
     router.replace(`/${newUrl}`);
   };
 
-  useEffect(() => {
-    const urlPalette: string = router.query?.palette as string;
-    const pA = urlPalette?.split("-");
-    const newPA = pA?.map((color) => "#" + color);
-    if (!urlPalette || urlPalette === ("" || undefined || null)) {
-    } else {
-      if (newPA.every((color) => isColor(color))) {
-        setPalette(newPA);
-        setColorCount(newPA.length);
-        setPrevPalettes(
-          produce(prevPalettes, (draft) => {
-            draft.splice(currentIndex + 1);
-            draft.push(newPA);
-          })
-        );
-        setCurrentIndex(currentIndex + 1);
-      } else {
-        router.push("/404");
-      }
-    }
-  }, [router]);
   useKeypress(" ", () => {
     generate();
   });
@@ -120,6 +98,8 @@ export default function Palette() {
     const updatedPalette = palette.filter((col) => col !== color);
     setPalette(updatedPalette);
     setColorCount(updatedPalette.length);
+    setUndoStack([...undoStack, [...palette]]);
+    setRedoStack([]);
     const newPaletteWithoutHash = updatedPalette.map((color) =>
       color.substr(1)
     );
@@ -149,10 +129,27 @@ export default function Palette() {
     router.replace(`/${newPaletteWithoutHash.join("-")}`);
   };
 
-  // useEffect(() => {
-  //   const newPaletteWithoutHash = palette.map((color) => color.substr(1));
-  //   router.replace(`/${newPaletteWithoutHash.join("-")}`);
-  // }, [palette, router]);
+  useEffect(() => {
+    const urlPalette: string = router.query?.palette as string;
+    const pA = urlPalette?.split("-");
+    const newPA = pA?.map((color) => "#" + color);
+    if (!urlPalette || urlPalette === ("" || undefined || null)) {
+    } else {
+      if (newPA.every((color) => isColor(color))) {
+        setPalette(newPA);
+        setColorCount(newPA.length);
+        setPrevPalettes(
+          produce(prevPalettes, (draft) => {
+            draft.splice(currentIndex + 1);
+            draft.push(newPA);
+          })
+        );
+        setCurrentIndex(currentIndex + 1);
+      } else {
+        router.push("/404");
+      }
+    }
+  }, [router]);
 
   return (
     <div className="w-screen overflow-x-hidden  h-screen relative">
