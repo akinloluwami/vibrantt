@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { CurlyBraces, FileImage, Image, Link, Share2, X } from "lucide-react";
+import copy from "copy-to-clipboard";
 const Export = () => {
-  const [copyText, setCopyText] = useState<string>("Copy");
+  const [copyText, setCopyText] = useState<string>("Copy URL");
 
   return (
     <div>
@@ -24,7 +25,14 @@ const Export = () => {
           <div className="flex items-center justify-center gap-10 my-7">
             <div
               className="flex flex-col items-center tooltip"
-              data-tip="Copy URL"
+              data-tip={copyText}
+              onClick={() => {
+                copy(window.location.href);
+                setCopyText("Copied");
+                setTimeout(() => {
+                  setCopyText("Copy URL");
+                }, 750);
+              }}
             >
               <button className="btn">
                 <Link />
