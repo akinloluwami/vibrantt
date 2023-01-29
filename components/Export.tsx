@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { CurlyBraces, FileImage, Image, Link, Share2, X } from "lucide-react";
 const Export = () => {
+  const [copyText, setCopyText] = useState<string>("Copy");
+
   return (
     <div>
       {/* The button to open modal */}
