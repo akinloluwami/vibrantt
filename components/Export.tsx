@@ -108,7 +108,9 @@ const Export = ({ paletteCode }: ExportProps) => {
               />{" "}
               <div className="flex items-center gap-2 mt-4">
                 <button className="btn">Download</button>
-                <button className="btn">Copy</button>
+                <button className="btn" onClick={() => copy(paletteCode)}>
+                  Copy
+                </button>
               </div>
             </div>
           )}
