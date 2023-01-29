@@ -165,7 +165,10 @@ export default function Palette() {
       .replace("[", "")
       .replace("]", "")
       .replaceAll(`"`, "")}
-    `;
+    
+    /* Array */
+    ${JSON.stringify(pA)}
+      `;
     setPaletteCode(paletteCode);
   }, [router]);
 
