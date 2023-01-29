@@ -1,8 +1,19 @@
 import React, { useState } from "react";
-import { CurlyBraces, FileImage, Image, Link, Share2, X } from "lucide-react";
+import {
+  ArrowBigLeft,
+  ArrowLeft,
+  CurlyBraces,
+  FileImage,
+  Image,
+  Link,
+  Share2,
+  X,
+} from "lucide-react";
 import copy from "copy-to-clipboard";
+import Button from "@/component-elements/Button";
 const Export = () => {
   const [copyText, setCopyText] = useState<string>("Copy URL");
+  const [copyOption, setCopyOption] = useState("");
 
   return (
     <div>
@@ -21,57 +32,73 @@ const Export = () => {
       <div className="modal">
         <div className="modal-box py-3">
           <div className="flex items-center justify-between">
-            <h3 className="font-bold text-lg">Export palette</h3>
-            <label htmlFor="my-modal" className="cursor-pointer">
-              <X />
-            </label>
+            <h3 className="font-bold text-lg">
+              {copyOption === ""
+                ? "Export palette"
+                : copyOption === "Code"
+                ? "Code"
+                : ""}
+            </h3>
+            {copyOption === "" && (
+              <label htmlFor="my-modal" className="cursor-pointer">
+                <X />
+              </label>
+            )}
+            {copyOption !== "" && (
+              <Button>
+                <ArrowLeft />
+              </Button>
+            )}
           </div>
 
-          <div className="flex items-center justify-center gap-10 my-7">
-            <div
-              className="flex flex-col items-center tooltip"
-              data-tip={copyText}
-              onClick={() => {
-                copy(window.location.href);
-                setCopyText("Copied");
-                setTimeout(() => {
-                  setCopyText("Copy URL");
-                }, 750);
-              }}
-            >
-              <button className="btn">
-                <Link />
-              </button>
-              <h1>URL</h1>
+          {copyOption === "" && (
+            <div className="flex items-center justify-center gap-10 my-7">
+              <div
+                className="flex flex-col items-center tooltip"
+                data-tip={copyText}
+                onClick={() => {
+                  copy(window.location.href);
+                  setCopyText("Copied");
+                  setTimeout(() => {
+                    setCopyText("Copy URL");
+                  }, 750);
+                }}
+              >
+                <button className="btn">
+                  <Link />
+                </button>
+                <h1>URL</h1>
+              </div>
+              <div
+                className="flex flex-col items-center opacity-50 tooltip"
+                data-tip="Coming soon"
+              >
+                <button className="btn">
+                  <Image />
+                </button>
+                <h1>PNG</h1>
+              </div>
+              <div
+                className="flex flex-col items-center opacity-50 tooltip"
+                data-tip="Coming soon"
+              >
+                <button className="btn">
+                  <FileImage />
+                </button>
+                <h1>JPG</h1>
+              </div>
+              <div
+                className="flex flex-col items-center opacity-50 tooltip"
+                data-tip="Coming soon"
+              >
+                <button className="btn" onClick={() => setCopyOption("Code")}>
+                  <CurlyBraces />
+                </button>
+                <h1>Code</h1>
+              </div>
             </div>
-            <div
-              className="flex flex-col items-center opacity-50 tooltip"
-              data-tip="Coming soon"
-            >
-              <button className="btn">
-                <Image />
-              </button>
-              <h1>PNG</h1>
-            </div>
-            <div
-              className="flex flex-col items-center opacity-50 tooltip"
-              data-tip="Coming soon"
-            >
-              <button className="btn">
-                <FileImage />
-              </button>
-              <h1>JPG</h1>
-            </div>
-            <div
-              className="flex flex-col items-center opacity-50 tooltip"
-              data-tip="Coming soon"
-            >
-              <button className="btn">
-                <CurlyBraces />
-              </button>
-              <h1>Code</h1>
-            </div>
-          </div>
+          )}
+          {copyOption === "Code" && <div className="">Copy as code</div>}
         </div>
       </div>
     </div>
