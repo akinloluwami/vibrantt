@@ -255,14 +255,14 @@ export default function Palette() {
                       </div>
                       {palette.length > 2 && (
                         <div className="tooltip" data-tip={"Remove color"}>
-                          <button
+                          <Button
                             className="text-2xl hidden lg:block"
                             onClick={() => {
                               removeColor(color);
                             }}
                           >
                             <X />
-                          </button>
+                          </Button>
                         </div>
                       )}
                     </center>
