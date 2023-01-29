@@ -5,7 +5,7 @@ import Button from "@/component-elements/Button";
 import { useContext } from "react";
 import { DrawerContext } from "@/stores/useDrawerStore";
 
-const Header = ({ undo, generated, redo, prevPalettes }: any) => {
+const Header = ({ undo, currentIndex, redo, prevPalettes }: any) => {
   const iconSize = 20;
   const { open } = useContext(DrawerContext);
   return (
@@ -34,7 +34,10 @@ const Header = ({ undo, generated, redo, prevPalettes }: any) => {
           <Button onClick={undo}>
             <ChevronLeft size={iconSize} />
           </Button>
-          <Button onClick={redo} disabled={generated < 2}>
+          <Button
+            onClick={redo}
+            disabled={currentIndex === prevPalettes.length - 1}
+          >
             <ChevronRight size={iconSize} />
           </Button>
         </div>
