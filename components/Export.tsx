@@ -10,7 +10,14 @@ const Export = () => {
         <Share2 size={20} />
       </label>
 
-      <input type="checkbox" id="my-modal" className="modal-toggle" />
+      <input
+        type="checkbox"
+        id="my-modal"
+        className="modal-toggle"
+        onChange={() => {
+          document.getElementById("my-modal")?.blur();
+        }}
+      />
       <div className="modal">
         <div className="modal-box py-3">
           <div className="flex items-center justify-between">
