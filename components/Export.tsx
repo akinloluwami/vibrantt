@@ -20,25 +20,37 @@ const Export = () => {
           </div>
 
           <div className="flex items-center justify-center gap-10 my-7">
-            <div className="flex flex-col items-center">
+            <div
+              className="flex flex-col items-center tooltip"
+              data-tip="Copy URL"
+            >
               <button className="btn">
                 <Link />
               </button>
               <h1>URL</h1>
             </div>
-            <div className="flex flex-col items-center opacity-50">
+            <div
+              className="flex flex-col items-center opacity-50 tooltip"
+              data-tip="Coming soon"
+            >
               <button className="btn">
                 <Image />
               </button>
               <h1>PNG</h1>
             </div>
-            <div className="flex flex-col items-center opacity-50">
+            <div
+              className="flex flex-col items-center opacity-50 tooltip"
+              data-tip="Coming soon"
+            >
               <button className="btn">
                 <FileImage />
               </button>
               <h1>JPG</h1>
             </div>
-            <div className="flex flex-col items-center opacity-50">
+            <div
+              className="flex flex-col items-center opacity-50 tooltip"
+              data-tip="Coming soon"
+            >
               <button className="btn">
                 <CurlyBraces />
               </button>
