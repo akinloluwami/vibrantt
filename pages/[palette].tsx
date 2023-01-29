@@ -72,6 +72,10 @@ export default function Palette() {
     const previousState: any = undoStack.pop();
     setRedoStack([...redoStack, [...palette]]);
     setPalette(previousState);
+    const newUrl = previousState
+      .map((color: string) => color.substr(1))
+      .join("-");
+    router.replace(`/${newUrl}`);
   };
 
   const redo = () => {
