@@ -174,9 +174,9 @@ export default function Palette() {
         <div className="flex shadow-sm items-center justify-between px-5 lg:h-[10%] h-[8%] relative">
           <Header
             undo={undo}
-            currentIndex={currentIndex}
             redo={redo}
-            prevPalettes={prevPalettes}
+            undoStack={undoStack}
+            redoStack={redoStack}
           />
         </div>
       </DrawerContext.Provider>
