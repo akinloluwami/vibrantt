@@ -59,7 +59,7 @@ export default function Palette() {
     setPalette(newPalette);
 
     const newPaletteWithoutHash = newPalette.map((color) => color.substr(1));
-    router.push(`/${newPaletteWithoutHash.join("-")}`);
+    router.replace(`/${newPaletteWithoutHash.join("-")}`);
     setPrevPalettes(
       produce(prevPalettes, (draft) => {
         draft.splice(currentIndex + 1);
@@ -119,7 +119,7 @@ export default function Palette() {
     const newPaletteWithoutHash = updatedPalette.map((color) =>
       color.substr(1)
     );
-    router.push(`/${newPaletteWithoutHash.join("-")}`);
+    router.replace(`/${newPaletteWithoutHash.join("-")}`);
   };
 
   const addNewColor = () => {
@@ -142,12 +142,12 @@ export default function Palette() {
     const newPaletteWithoutHash = updatedPalette.map((color) =>
       color.substr(1)
     );
-    router.push(`/${newPaletteWithoutHash.join("-")}`);
+    router.replace(`/${newPaletteWithoutHash.join("-")}`);
   };
 
   // useEffect(() => {
   //   const newPaletteWithoutHash = palette.map((color) => color.substr(1));
-  //   router.push(`/${newPaletteWithoutHash.join("-")}`);
+  //   router.replace(`/${newPaletteWithoutHash.join("-")}`);
   // }, [palette, router]);
 
   return (
