@@ -123,6 +123,8 @@ export default function Palette() {
     });
     const updatedPalette = [...palette, newColor[0]];
     setPalette(updatedPalette);
+    setUndoStack([...undoStack, [...palette]]);
+    setRedoStack([]);
     const newPaletteWithoutHash = updatedPalette.map((color) =>
       color.substr(1)
     );
