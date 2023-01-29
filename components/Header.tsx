@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { DrawerContext } from "@/stores/useDrawerStore";
 import Export from "./Export";
 
-const Header = ({ undo, redo, undoStack, redoStack }: any) => {
+const Header = ({ undo, redo, undoStack, redoStack, paletteCode }: any) => {
   const iconSize = 20;
   const { open } = useContext(DrawerContext);
   return (
@@ -32,7 +32,7 @@ const Header = ({ undo, redo, undoStack, redoStack }: any) => {
 
       <div className="lg:flex items-center gap-7 hidden lg:visible">
         <div className="">
-          <Export />
+          <Export paletteCode={paletteCode} />
         </div>
         <div className="flex items-center">
           <Button
