@@ -155,14 +155,14 @@ export default function Palette() {
     const withHash = pA?.map((color) => `#${color}`);
     const extendedArray = pA?.map((color) => {
       const rgb = hexToRgb(color);
-      // const hsl = hexToHsl(color);
       const { r, g, b } = rgb;
-      // const { h, s, l } = hsl;
+      const hsl = hexToHsl("#" + color);
+      const { h, s, l } = hsl;
       const obj = {
         name: nearest(color).name,
         hex: color,
         rgb: `[${r},${g},${b}]`,
-        // hsl: `[${h},${s},${l}]`,
+        hsl: `[${h},${s},${l}]`,
       };
       return obj;
     });
