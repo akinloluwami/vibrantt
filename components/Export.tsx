@@ -19,6 +19,7 @@ interface ExportProps {
 const Export = ({ paletteCode }: ExportProps) => {
   const [copyText, setCopyText] = useState<string>("Copy URL");
   const [copyOption, setCopyOption] = useState("");
+  const [copyCodeText, setCopyCodeText] = useState("Copy");
 
   return (
     <div>
@@ -108,8 +109,17 @@ const Export = ({ paletteCode }: ExportProps) => {
               />{" "}
               <div className="flex items-center gap-2 mt-4">
                 <button className="btn">Download</button>
-                <button className="btn" onClick={() => copy(paletteCode)}>
-                  Copy
+                <button
+                  className="btn"
+                  onClick={() => {
+                    copy(paletteCode);
+                    setCopyCodeText("Copied");
+                    setTimeout(() => {
+                      setCopyCodeText("Copy");
+                    }, 750);
+                  }}
+                >
+                  {copyCodeText}
                 </button>
               </div>
             </div>
