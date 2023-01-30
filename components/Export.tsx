@@ -22,10 +22,9 @@ const Export = ({ paletteCode }: ExportProps) => {
   const [copyText, setCopyText] = useState<string>("Copy URL");
   const [copyOption, setCopyOption] = useState("");
   const [copyCodeText, setCopyCodeText] = useState("Copy");
-  const [fileName, setFileName] = useState(generate().dashed);
+  const fileName = generate().dashed;
   return (
     <div>
-      {/* {fileName} */}
       <label htmlFor="my-modal" className="cursor-pointer">
         <Share2 size={20} />
       </label>
