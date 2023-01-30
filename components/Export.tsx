@@ -109,7 +109,7 @@ const Export = ({ paletteCode }: ExportProps) => {
                 className="bg-transparent w-full rounded-md mt-4 h-52"
               />{" "}
               <div className="flex items-center gap-2 mt-4">
-                <button className="btn" onClick={downloadTextFile}>
+                <button className="btn" onClick={downloadTextFile(paletteCode)}>
                   Download
                 </button>
                 <button
