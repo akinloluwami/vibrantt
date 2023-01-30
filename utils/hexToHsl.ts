@@ -5,7 +5,9 @@ export default function hexToHsl(hex: string): {
 } {
   // Check if the hex value is valid
   if (!/^#[0-9A-F]{6}$/i.test(hex)) {
-    throw new Error("Invalid hex color");
+    console.log(hex);
+
+    throw new Error(`Invalid hex color ${hex}`);
   }
 
   // convert hex to RGB

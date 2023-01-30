@@ -20,7 +20,6 @@ import Button from "@/component-elements/Button";
 import { ChevronLeft, ChevronRight, Plus, Settings2, X } from "lucide-react";
 import { useRouter } from "next/router";
 import isColor from "is-color";
-import { useRef } from "react";
 
 export default function Palette() {
   const [palette, setPalette] = useState<string[]>([]);
@@ -36,7 +35,7 @@ export default function Palette() {
   const [showToolsArray, setShowToolsArray] = useState(
     Array(colorCount).fill(false)
   );
-  const copyBtnRef: any = useRef(null);
+  const [paletteCode, setPaletteCode] = useState("");
 
   const colors = colorNameList.reduce(
     (o, { name, hex }) => Object.assign(o, { [name]: hex }),
@@ -153,6 +152,40 @@ export default function Palette() {
         router.push("/404");
       }
     }
+    const withHash = pA?.map((color) => `#${color}`);
+    const extendedArray = pA?.map((color) => {
+      const rgb = hexToRgb(color);
+      const { r, g, b } = rgb;
+      const hsl = hexToHsl("#" + color);
+      const { h, s, l } = hsl;
+      const obj = {
+        name: nearest(color).name,
+        hex: color,
+        rgb: `[${r},${g},${b}]`,
+        hsl: `[${h},${s},${l}]`,
+      };
+      return obj;
+    });
+    const paletteCode = `
+    /* Generated with ❤ by Vibrantt - https://vibrantt.co/${urlPalette} */
+
+    /* CSV */
+    ${urlPalette?.replaceAll("-", ",")}
+
+    /* With # */
+    ${JSON.stringify(withHash)
+      ?.replaceAll(",", ", ")
+      ?.replace("[", "")
+      ?.replace("]", "")
+      ?.replaceAll(`"`, "")}
+    
+    /* Array */
+    ${JSON?.stringify(pA)}
+
+    /* Extended Array */
+    ${JSON?.stringify(extendedArray)}
+      `;
+    setPaletteCode(paletteCode);
   }, [router]);
 
   return (
@@ -178,6 +211,7 @@ export default function Palette() {
             redo={redo}
             undoStack={undoStack}
             redoStack={redoStack}
+            paletteCode={paletteCode}
           />
         </div>
       </DrawerContext.Provider>
