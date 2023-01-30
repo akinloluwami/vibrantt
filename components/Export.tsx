@@ -3,6 +3,7 @@ import {
   ArrowBigLeft,
   ArrowLeft,
   CurlyBraces,
+  Download,
   FileImage,
   Image,
   Link,
@@ -111,12 +112,12 @@ const Export = ({ paletteCode }: ExportProps) => {
               />{" "}
               <div className="flex items-center gap-2 mt-4">
                 <button
-                  className="btn"
+                  className="btn flex items-center gap-1"
                   onClick={() =>
                     downloadTextFile({ content: paletteCode, fileName })
                   }
                 >
-                  Download
+                  <Download size={16} /> Download
                 </button>
                 <button
                   className="btn"
