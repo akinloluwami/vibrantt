@@ -79,6 +79,12 @@ const Export = ({ paletteCode }: ExportProps) => {
                 </button>
                 <h1>URL</h1>
               </div>
+              <div className="flex flex-col items-center">
+                <button className="btn" onClick={() => setCopyOption("Code")}>
+                  <CurlyBraces />
+                </button>
+                <h1>Code</h1>
+              </div>
               <div
                 className="flex flex-col items-center opacity-50 tooltip"
                 data-tip="Coming soon"
@@ -96,12 +102,6 @@ const Export = ({ paletteCode }: ExportProps) => {
                   <FileImage />
                 </button>
                 <h1>JPG</h1>
-              </div>
-              <div className="flex flex-col items-center">
-                <button className="btn" onClick={() => setCopyOption("Code")}>
-                  <CurlyBraces />
-                </button>
-                <h1>Code</h1>
               </div>
             </div>
           )}
