@@ -22,9 +22,10 @@ const Export = ({ paletteCode }: ExportProps) => {
   const [copyText, setCopyText] = useState<string>("Copy URL");
   const [copyOption, setCopyOption] = useState("");
   const [copyCodeText, setCopyCodeText] = useState("Copy");
-
+  // const fileName: string = generate().dashed as string;
   return (
     <div>
+      {/* {fileName} */}
       <label htmlFor="my-modal" className="cursor-pointer">
         <Share2 size={20} />
       </label>
@@ -112,9 +113,7 @@ const Export = ({ paletteCode }: ExportProps) => {
               <div className="flex items-center gap-2 mt-4">
                 <button
                   className="btn"
-                  onClick={() =>
-                    downloadTextFile(paletteCode, generate().dashed)
-                  }
+                  onClick={() => downloadTextFile(paletteCode, fileName)}
                 >
                   Download
                 </button>
