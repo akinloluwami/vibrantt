@@ -22,7 +22,7 @@ const Export = ({ paletteCode }: ExportProps) => {
   const [copyText, setCopyText] = useState<string>("Copy URL");
   const [copyOption, setCopyOption] = useState("");
   const [copyCodeText, setCopyCodeText] = useState("Copy");
-  // const fileName: string = generate().dashed as string;
+  const [fileName, setFileName] = useState(generate().dashed);
   return (
     <div>
       {/* {fileName} */}
@@ -113,7 +113,9 @@ const Export = ({ paletteCode }: ExportProps) => {
               <div className="flex items-center gap-2 mt-4">
                 <button
                   className="btn"
-                  onClick={() => downloadTextFile(paletteCode, fileName)}
+                  onClick={() =>
+                    downloadTextFile({ content: paletteCode, fileName })
+                  }
                 >
                   Download
                 </button>
