@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import copy from "copy-to-clipboard";
 import Button from "@/component-elements/Button";
+import downloadTextFile from "@/utils/downloadTextFile";
 
 interface ExportProps {
   paletteCode: string;
@@ -108,7 +109,9 @@ const Export = ({ paletteCode }: ExportProps) => {
                 className="bg-transparent w-full rounded-md mt-4 h-52"
               />{" "}
               <div className="flex items-center gap-2 mt-4">
-                <button className="btn">Download</button>
+                <button className="btn" onClick={downloadTextFile}>
+                  Download
+                </button>
                 <button
                   className="btn"
                   onClick={() => {
