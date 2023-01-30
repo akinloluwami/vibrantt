@@ -12,7 +12,6 @@ import {
 import copy from "copy-to-clipboard";
 import Button from "@/component-elements/Button";
 import downloadTextFile from "@/utils/downloadTextFile";
-import randomAF from "@/utils/randomAf";
 
 interface ExportProps {
   paletteCode: string;
