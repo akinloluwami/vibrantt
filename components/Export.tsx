@@ -111,7 +111,9 @@ const Export = ({ paletteCode }: ExportProps) => {
               <div className="flex items-center gap-2 mt-4">
                 <button
                   className="btn"
-                  onClick={() => downloadTextFile(paletteCode)}
+                  onClick={() =>
+                    downloadTextFile(paletteCode, generate().dashed)
+                  }
                 >
                   Download
                 </button>
