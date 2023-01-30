@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   ArrowBigLeft,
   ArrowLeft,
+  Copy,
   CurlyBraces,
   Download,
   FileImage,
@@ -120,7 +121,7 @@ const Export = ({ paletteCode }: ExportProps) => {
                   <Download size={16} /> Download
                 </button>
                 <button
-                  className="btn"
+                  className="btn flex items-center gap-1"
                   onClick={() => {
                     copy(paletteCode);
                     setCopyCodeText("Copied");
@@ -129,7 +130,7 @@ const Export = ({ paletteCode }: ExportProps) => {
                     }, 750);
                   }}
                 >
-                  {copyCodeText}
+                  <Copy size={16} /> {copyCodeText}
                 </button>
               </div>
             </div>
