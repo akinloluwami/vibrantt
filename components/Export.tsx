@@ -12,6 +12,7 @@ import {
 import copy from "copy-to-clipboard";
 import Button from "@/component-elements/Button";
 import downloadTextFile from "@/utils/downloadTextFile";
+import generate from "project-name-generator";
 
 interface ExportProps {
   paletteCode: string;
