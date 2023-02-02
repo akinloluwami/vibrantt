@@ -190,6 +190,28 @@ export default function Palette() {
 
   return (
     <div className="w-screen overflow-x-hidden  h-screen relative">
+      <div className="absolute w-96 z-[999999999999999999] py-3 h-96 bg-[#1a1a1a] flex items-center justify-between flex-col">
+        <div className="">
+          <h1>Vibrantt Logo</h1>
+        </div>
+        <div className="flex-2 flex">
+          {palette.slice(0, 5).map((color) => (
+            <div className="flex flex-col items-center">
+              <div
+                className="h-14 w-14 rounded-full mx-2"
+                style={{ backgroundColor: color }}
+              ></div>
+              <h1 className="font-semibold text-sm mt-2">
+                {color.toUpperCase()}
+              </h1>
+            </div>
+          ))}
+        </div>
+        <div className="">
+          <h1>Generate by vibrantt.co</h1>
+        </div>
+      </div>
+
       <button
         className={`add-btn hidden h-12 w-12 bg-slate-900 shadow-sm lg:flex items-center justify-center rounded-full absolute bottom-7 lg:right-5 ${
           colorCount === 10 && "opacity-0 pointer-events-none"
