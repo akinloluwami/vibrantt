@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hcorta/react-to-image": "^1.0.0",
     "@next/font": "13.1.2",
     "@radix-ui/react-popover": "1.0.3",
     "@types/is-color": "^1.0.0",
