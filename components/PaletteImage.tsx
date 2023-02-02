@@ -11,7 +11,7 @@ const PaletteImage = ({ palette }: any) => {
         />
       </div>
       <div className="flex-2 flex">
-        {palette.slice(0, 5).map((color) => (
+        {palette.slice(0, 5).map((color: string) => (
           <div className="flex flex-col items-center">
             <div
               className="h-14 w-14 rounded-full mx-2"
