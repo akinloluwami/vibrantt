@@ -21,10 +21,8 @@ import { ChevronLeft, ChevronRight, Plus, Settings2, X } from "lucide-react";
 import { useRouter } from "next/router";
 import isColor from "is-color";
 import PaletteImage from "@/components/PaletteImage";
-import { useToImage } from "@hcorta/react-to-image";
 
 export default function Palette() {
-  const { ref, isLoading, getPng } = useToImage();
   const [palette, setPalette] = useState<string[]>([]);
   const [copyText, setCopyText] = useState<string>("Copy");
   const [prevPalettes, setPrevPalettes] = useState<string[][]>([[]]);
@@ -193,7 +191,6 @@ export default function Palette() {
 
   return (
     <div className="w-screen overflow-x-hidden  h-screen relative">
-      <PaletteImage palette={palette} />
       <button
         className={`add-btn hidden h-12 w-12 bg-slate-900 shadow-sm lg:flex items-center justify-center rounded-full absolute bottom-7 lg:right-5 ${
           colorCount === 10 && "opacity-0 pointer-events-none"
@@ -216,6 +213,7 @@ export default function Palette() {
             undoStack={undoStack}
             redoStack={redoStack}
             paletteCode={paletteCode}
+            palette={palette}
           />
         </div>
       </DrawerContext.Provider>
