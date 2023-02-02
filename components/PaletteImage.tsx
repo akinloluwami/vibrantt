@@ -1,8 +1,11 @@
 import React from "react";
 
-const PaletteImage = ({ palette }: any) => {
+const PaletteImage = ({ palette, ref }: any) => {
   return (
-    <div className="absolute w-96 z-[999999999999999999] py-3 h-96 bg-[#1a1a1a] flex items-center justify-between flex-col">
+    <div
+      className="absolute w-96 z-[999999999999999999] py-3 h-96 bg-[#1a1a1a] flex items-center justify-between flex-col translate-x-[-1100px]"
+      ref={ref}
+    >
       <div className="">
         <img
           src="https://res.cloudinary.com/xing0x/image/upload/v1674131509/VIBRANTwbgggw_w6j7m9.png"
