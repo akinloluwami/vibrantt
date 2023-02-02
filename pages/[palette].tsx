@@ -192,7 +192,11 @@ export default function Palette() {
     <div className="w-screen overflow-x-hidden  h-screen relative">
       <div className="absolute w-96 z-[999999999999999999] py-3 h-96 bg-[#1a1a1a] flex items-center justify-between flex-col">
         <div className="">
-          <h1>Vibrantt Logo</h1>
+          <img
+            src="https://res.cloudinary.com/xing0x/image/upload/v1674131509/VIBRANTwbgggw_w6j7m9.png"
+            className="w-32"
+            alt=""
+          />
         </div>
         <div className="flex-2 flex">
           {palette.slice(0, 5).map((color) => (
