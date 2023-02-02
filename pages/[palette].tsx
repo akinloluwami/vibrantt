@@ -21,8 +21,10 @@ import { ChevronLeft, ChevronRight, Plus, Settings2, X } from "lucide-react";
 import { useRouter } from "next/router";
 import isColor from "is-color";
 import PaletteImage from "@/components/PaletteImage";
+import { useToImage } from "@hcorta/react-to-image";
 
 export default function Palette() {
+  const { ref, isLoading, getPng } = useToImage();
   const [palette, setPalette] = useState<string[]>([]);
   const [copyText, setCopyText] = useState<string>("Copy");
   const [prevPalettes, setPrevPalettes] = useState<string[][]>([[]]);
