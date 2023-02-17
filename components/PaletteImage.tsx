@@ -14,8 +14,8 @@ const PaletteImage = ({ palette, ref }: any) => {
         />
       </div>
       <div className="h-[83%] flex w-full flex-col bg-red-400">
-        {palette.map((color: string) => (
-          <div className="w-full flex h-full">
+        {palette.map((color: string, i: number) => (
+          <div className="w-full flex h-full" key={i}>
             <div
               className="w-full flex items-center "
               style={{ backgroundColor: color }}
