@@ -55,11 +55,11 @@ const Export = ({ paletteCode, palette }: ExportProps) => {
           <Image src={vibrantt} alt={"Logo"} width={100} />
         </div>
         <div className="h-[83%] flex w-full flex-col bg-red-400">
-          {palette.map((color: string) => {
+          {palette.map((color: string, i) => {
             const luminosity = getLuminosity(color);
             const textColor = luminosity >= 128 ? "text-black" : "text-white";
             return (
-              <div className={`w-full flex h-full ${textColor} `}>
+              <div className={`w-full flex h-full ${textColor} `} key={i}>
                 <div
                   className="w-full flex items-center "
                   style={{ backgroundColor: color }}
