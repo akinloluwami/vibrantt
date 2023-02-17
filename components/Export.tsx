@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   ArrowBigLeft,
   ArrowLeft,
@@ -24,6 +24,7 @@ interface ExportProps {
 }
 
 const Export = ({ paletteCode, palette }: ExportProps) => {
+  const divRef = useRef(null);
   const [copyText, setCopyText] = useState<string>("Copy URL");
   const [copyOption, setCopyOption] = useState("");
   const [copyCodeText, setCopyCodeText] = useState("Copy");
