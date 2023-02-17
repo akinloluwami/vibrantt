@@ -16,6 +16,7 @@ import Button from "@/component-elements/Button";
 import downloadTextFile from "@/utils/downloadTextFile";
 import generate from "project-name-generator";
 import PaletteImage from "./PaletteImage";
+import html2canvas from "html2canvas";
 
 interface ExportProps {
   paletteCode: string;
