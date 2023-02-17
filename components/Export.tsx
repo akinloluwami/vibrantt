@@ -15,7 +15,7 @@ import copy from "copy-to-clipboard";
 import Button from "@/component-elements/Button";
 import downloadTextFile from "@/utils/downloadTextFile";
 import generate from "project-name-generator";
-import { useToImage } from "@hcorta/react-to-image";
+// import { useToImage } from "@hcorta/react-to-image";
 import PaletteImage from "./PaletteImage";
 
 interface ExportProps {
@@ -28,11 +28,11 @@ const Export = ({ paletteCode, palette }: ExportProps) => {
   const [copyOption, setCopyOption] = useState("");
   const [copyCodeText, setCopyCodeText] = useState("Copy");
   const fileName = generate().dashed;
-  const { ref, getPng } = useToImage();
+  // const { ref, getPng } = useToImage();
 
   return (
     <div>
-      <PaletteImage palette={palette} ref={ref} />
+      <PaletteImage palette={palette} />
 
       <label htmlFor="my-modal" className="cursor-pointer">
         <Share2 size={20} />
@@ -99,7 +99,7 @@ const Export = ({ paletteCode, palette }: ExportProps) => {
                 className="flex flex-col items-center opacity-50 tooltip"
                 data-tip="Coming soon"
               >
-                <button className="btn" onClick={getPng}>
+                <button className="btn">
                   <Image />
                 </button>
                 <h1>PNG</h1>
