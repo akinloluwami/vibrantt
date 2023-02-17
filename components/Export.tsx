@@ -109,8 +109,8 @@ const Export = ({ paletteCode, palette }: ExportProps) => {
                 <h1>Code</h1>
               </div>
               <div
-                className="flex flex-col items-center opacity-50 tooltip"
-                data-tip="Coming soon"
+                className="flex flex-col items-center"
+                // data-tip="Coming soon"
               >
                 <button className="btn" onClick={() => handleDownload("png")}>
                   <Image />
