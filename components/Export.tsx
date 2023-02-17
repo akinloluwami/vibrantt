@@ -31,6 +31,16 @@ const Export = ({ paletteCode, palette }: ExportProps) => {
   const fileName = generate().dashed;
   // const { ref, getPng } = useToImage();
 
+  const handleDownload = async (type: string) => {
+    const div: any = divRef.current;
+    const canvas = await html2canvas(div, { scale: 2 });
+    const dataURL = canvas.toDataURL(`image/${type}`);
+    const link = document.createElement("a");
+    link.download = `my-image.${type}`;
+    link.href = dataURL;
+    link.click();
+  };
+
   return (
     <div>
       <div className="">
