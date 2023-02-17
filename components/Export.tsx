@@ -31,7 +31,9 @@ const Export = ({ paletteCode, palette }: ExportProps) => {
 
   return (
     <div>
-      <PaletteImage palette={palette} />
+      <div className="">
+        <PaletteImage palette={palette} />
+      </div>
 
       <label htmlFor="my-modal" className="cursor-pointer">
         <Share2 size={20} />
