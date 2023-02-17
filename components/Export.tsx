@@ -19,6 +19,7 @@ import PaletteImage from "./PaletteImage";
 import html2canvas from "html2canvas";
 import Image from "next/image";
 import vibrantt from "@/images/vibrantt.png";
+import { getLuminosity } from "@/utils/getLuminosity";
 
 interface ExportProps {
   paletteCode: string;
