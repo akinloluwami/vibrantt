@@ -50,7 +50,7 @@ const Export = ({ paletteCode, palette }: ExportProps) => {
         ref={divRef}
       >
         <div className="h-[10%] flex items-center justify-center">
-          <Image src={vibrantt} alt={"Logo"} />
+          <Image src={vibrantt} alt={"Logo"} width={100} />
         </div>
         <div className="h-[83%] flex w-full flex-col bg-red-400">
           {palette.map((color: string) => (
