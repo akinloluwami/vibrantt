@@ -20,6 +20,7 @@ import Button from "@/component-elements/Button";
 import { ChevronLeft, ChevronRight, Plus, Settings2, X } from "lucide-react";
 import { useRouter } from "next/router";
 import isColor from "is-color";
+import PaletteImage from "@/components/PaletteImage";
 
 export default function Palette() {
   const [palette, setPalette] = useState<string[]>([]);
@@ -212,6 +213,7 @@ export default function Palette() {
             undoStack={undoStack}
             redoStack={redoStack}
             paletteCode={paletteCode}
+            palette={palette}
           />
         </div>
       </DrawerContext.Provider>
