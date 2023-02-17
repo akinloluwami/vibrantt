@@ -6,7 +6,7 @@ import {
   CurlyBraces,
   Download,
   FileImage,
-  Image,
+  Image as Img,
   Link,
   Share2,
   X,
@@ -17,6 +17,8 @@ import downloadTextFile from "@/utils/downloadTextFile";
 import generate from "project-name-generator";
 import PaletteImage from "./PaletteImage";
 import html2canvas from "html2canvas";
+import Image from "next/image";
+import vibrantt from "@/images/vibrantt.png";
 
 interface ExportProps {
   paletteCode: string;
@@ -48,11 +50,7 @@ const Export = ({ paletteCode, palette }: ExportProps) => {
         ref={divRef}
       >
         <div className="h-[10%] flex items-center justify-center">
-          <img
-            src="https://res.cloudinary.com/xing0x/image/upload/v1674131509/VIBRANTwbgggw_w6j7m9.png"
-            className="w-24"
-            alt=""
-          />
+          <Image src={vibrantt} alt={"Logo"} />
         </div>
         <div className="h-[83%] flex w-full flex-col bg-red-400">
           {palette.map((color: string) => (
@@ -137,7 +135,7 @@ const Export = ({ paletteCode, palette }: ExportProps) => {
                 // data-tip="Coming soon"
               >
                 <button className="btn" onClick={() => handleDownload("png")}>
-                  <Image />
+                  <Img />
                 </button>
                 <h1>PNG</h1>
               </div>
