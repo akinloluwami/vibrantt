@@ -55,6 +55,8 @@ const Export = ({ paletteCode, palette }: ExportProps) => {
         </div>
         <div className="h-[83%] flex w-full flex-col bg-red-400">
           {palette.map((color: string) => {
+            const luminosity = getLuminosity(color);
+
             return (
               <div className="w-full flex h-full">
                 <div
