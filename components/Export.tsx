@@ -15,7 +15,6 @@ import copy from "copy-to-clipboard";
 import Button from "@/component-elements/Button";
 import downloadTextFile from "@/utils/downloadTextFile";
 import generate from "project-name-generator";
-// import { useToImage } from "@hcorta/react-to-image";
 import PaletteImage from "./PaletteImage";
 
 interface ExportProps {
